@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,24 @@ namespace projectTutor
 
         private void StudentForm_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void saveStudenFormButton_Click(object sender, EventArgs e)
+        {
+            //Establish a connection from dbo.Student table
+            string connectionString = "Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\javel\Documents\dataContainers.mdf; Integrated Security = True; Connect Timeout = 30";
+           
+            //Establish data adapter (data source, disconnected data source)
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            //Create a DataSet
+            DataSet data = new DataSet();
+
+            //Pass the data from the customer table to the dataset
+            SqlDataAdapter studentDataAdapter = new SqlDataAdapter("SELECT * FROM Student", connection);
+            studentDataAdapter.Fill(data, "Student");
+
 
         }
     }

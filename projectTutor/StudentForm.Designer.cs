@@ -38,10 +38,10 @@
             this.startDateStudentFormLabel = new System.Windows.Forms.Label();
             this.nameStudentFormMaskedBox = new System.Windows.Forms.MaskedTextBox();
             this.programStudentFormMaskedBox = new System.Windows.Forms.MaskedTextBox();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.saveStudenFormButton = new System.Windows.Forms.Button();
             this.deleteStudentFormButton = new System.Windows.Forms.Button();
+            this.startDateFormMaskedBox = new System.Windows.Forms.MaskedTextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -123,12 +123,6 @@
             this.programStudentFormMaskedBox.Size = new System.Drawing.Size(100, 20);
             this.programStudentFormMaskedBox.TabIndex = 5;
             // 
-            // monthCalendar1
-            // 
-            this.monthCalendar1.Location = new System.Drawing.Point(28, 215);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 6;
-            // 
             // richTextBox1
             // 
             this.richTextBox1.Location = new System.Drawing.Point(382, 66);
@@ -145,6 +139,7 @@
             this.saveStudenFormButton.TabIndex = 8;
             this.saveStudenFormButton.Text = "SAVE";
             this.saveStudenFormButton.UseVisualStyleBackColor = true;
+            this.saveStudenFormButton.Click += new System.EventHandler(this.saveStudenFormButton_Click);
             // 
             // deleteStudentFormButton
             // 
@@ -155,15 +150,22 @@
             this.deleteStudentFormButton.Text = "DELETE";
             this.deleteStudentFormButton.UseVisualStyleBackColor = true;
             // 
+            // startDateFormMaskedBox
+            // 
+            this.startDateFormMaskedBox.Location = new System.Drawing.Point(28, 209);
+            this.startDateFormMaskedBox.Name = "startDateFormMaskedBox";
+            this.startDateFormMaskedBox.Size = new System.Drawing.Size(100, 20);
+            this.startDateFormMaskedBox.TabIndex = 10;
+            // 
             // StudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(686, 467);
+            this.Controls.Add(this.startDateFormMaskedBox);
             this.Controls.Add(this.deleteStudentFormButton);
             this.Controls.Add(this.saveStudenFormButton);
             this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.monthCalendar1);
             this.Controls.Add(this.programStudentFormMaskedBox);
             this.Controls.Add(this.nameStudentFormMaskedBox);
             this.Controls.Add(this.startDateStudentFormLabel);
@@ -193,9 +195,9 @@
         private System.Windows.Forms.Label startDateStudentFormLabel;
         private System.Windows.Forms.MaskedTextBox nameStudentFormMaskedBox;
         private System.Windows.Forms.MaskedTextBox programStudentFormMaskedBox;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button saveStudenFormButton;
         private System.Windows.Forms.Button deleteStudentFormButton;
+        private System.Windows.Forms.MaskedTextBox startDateFormMaskedBox;
     }
 }
