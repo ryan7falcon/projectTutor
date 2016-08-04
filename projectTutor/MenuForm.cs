@@ -12,6 +12,8 @@ namespace projectTutor
 {
     public partial class MenuForm : Form
     {
+        ReservationForm regForm;
+
         public MenuForm()
         {
             InitializeComponent();
@@ -21,5 +23,26 @@ namespace projectTutor
         {
 
         }
+
+        private void reservationMainMenuItem_Click(object sender, EventArgs e)
+        {
+            if (regForm == null)
+            {
+                regForm = new ReservationForm();
+                //regForm.MdiParent = this;
+                regForm.FormClosed += RegForm_FormClosed;
+                regForm.Show();
+            }
+            else
+            {
+                regForm.Activate();
+            }
+        }
+
+        private void RegForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            regForm = null;
+        }
+
     }
 }
