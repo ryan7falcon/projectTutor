@@ -22,10 +22,20 @@ namespace projectTutor
         {
 
         }
-
         private void saveStudenFormButton_Click(object sender, EventArgs e)
         {
-            //Establish a connection from dbo.Student table
+            //Get name
+            //Get program
+            //Get startdate
+            String studentName = nameStudentFormMaskedBox.Text;
+            String studentProgram = programStudentFormMaskedBox.Text;
+            String startDate = startDateFormMaskedBox.Text;
+       
+
+
+
+
+            /*Establish a connection from dbo.Student table
             string connectionString = "Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\javel\Documents\dataContainers.mdf; Integrated Security = True; Connect Timeout = 30";
            
             //Establish data adapter (data source, disconnected data source)
@@ -37,7 +47,12 @@ namespace projectTutor
             //Pass the data from the customer table to the dataset
             SqlDataAdapter studentDataAdapter = new SqlDataAdapter("SELECT * FROM Student", connection);
             studentDataAdapter.Fill(data, "Student");
+            */
 
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }

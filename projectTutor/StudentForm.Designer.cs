@@ -38,11 +38,12 @@
             this.startDateStudentFormLabel = new System.Windows.Forms.Label();
             this.nameStudentFormMaskedBox = new System.Windows.Forms.MaskedTextBox();
             this.programStudentFormMaskedBox = new System.Windows.Forms.MaskedTextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.saveStudenFormButton = new System.Windows.Forms.Button();
             this.deleteStudentFormButton = new System.Windows.Forms.Button();
             this.startDateFormMaskedBox = new System.Windows.Forms.MaskedTextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -111,6 +112,7 @@
             // 
             // nameStudentFormMaskedBox
             // 
+            this.nameStudentFormMaskedBox.BeepOnError = true;
             this.nameStudentFormMaskedBox.Location = new System.Drawing.Point(28, 66);
             this.nameStudentFormMaskedBox.Name = "nameStudentFormMaskedBox";
             this.nameStudentFormMaskedBox.Size = new System.Drawing.Size(100, 20);
@@ -122,14 +124,6 @@
             this.programStudentFormMaskedBox.Name = "programStudentFormMaskedBox";
             this.programStudentFormMaskedBox.Size = new System.Drawing.Size(100, 20);
             this.programStudentFormMaskedBox.TabIndex = 5;
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(382, 66);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(258, 311);
-            this.richTextBox1.TabIndex = 7;
-            this.richTextBox1.Text = "";
             // 
             // saveStudenFormButton
             // 
@@ -157,15 +151,24 @@
             this.startDateFormMaskedBox.Size = new System.Drawing.Size(100, 20);
             this.startDateFormMaskedBox.TabIndex = 10;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(343, 50);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(268, 282);
+            this.dataGridView1.TabIndex = 11;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
             // StudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(686, 467);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.startDateFormMaskedBox);
             this.Controls.Add(this.deleteStudentFormButton);
             this.Controls.Add(this.saveStudenFormButton);
-            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.programStudentFormMaskedBox);
             this.Controls.Add(this.nameStudentFormMaskedBox);
             this.Controls.Add(this.startDateStudentFormLabel);
@@ -178,6 +181,7 @@
             this.Load += new System.EventHandler(this.StudentForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -195,9 +199,9 @@
         private System.Windows.Forms.Label startDateStudentFormLabel;
         private System.Windows.Forms.MaskedTextBox nameStudentFormMaskedBox;
         private System.Windows.Forms.MaskedTextBox programStudentFormMaskedBox;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button saveStudenFormButton;
         private System.Windows.Forms.Button deleteStudentFormButton;
         private System.Windows.Forms.MaskedTextBox startDateFormMaskedBox;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

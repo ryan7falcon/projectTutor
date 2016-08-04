@@ -23,8 +23,9 @@ namespace projectTutor
 
         private void btnBook_Click(object sender, EventArgs e)
         {
-           SqlConnection con = dbc.getConnection();
-
+            //SqlConnection con = dbc.getConnection();
+            StudentForm studentForm = new StudentForm();
+            studentForm.Show();
 
         }
     }
