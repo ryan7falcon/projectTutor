@@ -1,6 +1,6 @@
 ﻿namespace projectTutor
 {
-    partial class Tutor
+    partial class TutorForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Text = "TutorForm";
+
             this.Save = new System.Windows.Forms.Button();
             this.UniqueID = new System.Windows.Forms.Button();
             this.TutorIdL = new System.Windows.Forms.Label();
@@ -363,8 +366,8 @@
             this.Controls.Add(this.TutorIdL);
             this.Controls.Add(this.UniqueID);
             this.Controls.Add(this.Save);
-            this.Name = "Tutor";
-            this.Text = "Tutor";
+            this.Name = "TutorForm";
+
             this.Load += new System.EventHandler(this.Tutor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.level)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TutorID)).EndInit();
@@ -377,7 +380,7 @@
 
         }
 
-        #endregion
+        
 
         private System.Windows.Forms.Button Save;
         private System.Windows.Forms.Button UniqueID;
@@ -414,4 +417,6 @@
         private System.Windows.Forms.NumericUpDown AvailTutorID;
         private System.Windows.Forms.Label AvailTutorIDL;
     }
-}
+
+        #endregion
+    }

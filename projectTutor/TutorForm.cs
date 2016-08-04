@@ -10,19 +10,19 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 
+
 namespace projectTutor
 {
-    public partial class Tutor : Form
+    public partial class TutorForm : Form
     {
-
         DataSet ds;
-        public Tutor()
+        public TutorForm()
         {
             InitializeComponent();
             TutorName.Validating += TutorName_Validating;
             Subjects.Validating += Subjects_Validating;
-
         }
+        
 
         private void label2_Click(object sender, EventArgs e)
         {
@@ -47,13 +47,13 @@ namespace projectTutor
             using (con)
             {
                 SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Tutor", con);
-                da.Fill(ds,"Tutor");
+                da.Fill(ds, "Tutor");
                 da = new SqlDataAdapter("SELECT * FROM Availability", con);
                 da.Fill(ds, "Availability");
-                
+
             }
             DataTable tutorT = ds.Tables["Tutor"];
-            foreach (DataRow row in ds.Tables["Tutor"].Rows) 
+            foreach (DataRow row in ds.Tables["Tutor"].Rows)
             {
                 ListViewItem item = new ListViewItem(row["Id"].ToString());
                 item.SubItems.Add(row["name"].ToString());
@@ -113,23 +113,23 @@ namespace projectTutor
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            
-                
-            
+
+
+
+
 
         }
 
         private void listView1_Click(object sender, EventArgs e)
         {
-   
+
             TutorID.Value = Convert.ToInt32(listView1.SelectedItems[0].SubItems[0].Text);
             TutorName.Text = listView1.SelectedItems[0].SubItems[1].Text;
             Subjects.Text = listView1.SelectedItems[0].SubItems[2].Text;
             level.Value = Convert.ToInt32(listView1.SelectedItems[0].SubItems[3].Text);
             rate.Text = listView1.SelectedItems[0].SubItems[4].Text;
             listView2.Items.Clear();
-            foreach (DataRow row in ds.Tables["Availability"].Select("TutorId="+ listView1.SelectedItems[0].SubItems[0].Text))
+            foreach (DataRow row in ds.Tables["Availability"].Select("TutorId=" + listView1.SelectedItems[0].SubItems[0].Text))
             {
                 ListViewItem item = new ListViewItem(row["Id"].ToString());
                 item.SubItems.Add(row["Day"].ToString());
@@ -147,10 +147,10 @@ namespace projectTutor
 
         private void listView2_Click(object sender, EventArgs e)
         {
-            AvailID.Text= listView2.SelectedItems[0].SubItems[0].Text;
-            Day.Value= Convert.ToInt32(listView2.SelectedItems[0].SubItems[1].Text);
-            Time.Text= listView2.SelectedItems[0].SubItems[2].Text;
-            AvailTutorID.Value= Convert.ToInt32(listView2.SelectedItems[0].SubItems[3].Text);
+            AvailID.Text = listView2.SelectedItems[0].SubItems[0].Text;
+            Day.Value = Convert.ToInt32(listView2.SelectedItems[0].SubItems[1].Text);
+            Time.Text = listView2.SelectedItems[0].SubItems[2].Text;
+            AvailTutorID.Value = Convert.ToInt32(listView2.SelectedItems[0].SubItems[3].Text);
         }
 
         private void Save_Click(object sender, EventArgs e)
@@ -158,5 +158,4 @@ namespace projectTutor
 
         }
     }
-   
 }

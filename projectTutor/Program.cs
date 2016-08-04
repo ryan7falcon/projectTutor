@@ -16,7 +16,7 @@ namespace projectTutor
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Tutor());
+            Application.Run(new TutorForm());
         }
     }
 }
