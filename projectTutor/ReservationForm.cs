@@ -20,7 +20,7 @@ namespace projectTutor
         public ReservationForm()
         {
             InitializeComponent();
-            DBConnector dbc = new DBConnector();
+            dbc = new DBConnector();
         }
 
         private void btnBook_Click(object sender, EventArgs e)
@@ -39,13 +39,21 @@ namespace projectTutor
         //get a Customer object using info from DB
         private Reservation getReservationFromDB(int index)
         {
-            List<string> l = dbc.get("Customer", index);
+            List<string> l = dbc.get("Reservation", index);
             return new Reservation(Int32.Parse(l[0]), DateTime.Parse(l[1]), Int32.Parse(l[2]), Int32.Parse(l[3]));
         }
 
         private void btnConfirmStuId_Click(object sender, EventArgs e)
         {
-            Student stu;
+            Student stu = getStudentFromDB(Int32.Parse(nStuId.Text)); 
+
+           
+        }
+
+        private Student getStudentFromDB(int index)
+        {
+            List<string> l = dbc.get("Student", index);
+            return new Student(Int32.Parse(l[0]), l[1], l[2], Int32.Parse(l[3]));
         }
     }
 }

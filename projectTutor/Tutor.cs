@@ -6,36 +6,39 @@ using System.Threading.Tasks;
 
 namespace projectTutor
 {
-    class Room : Record
+    class Tutor : Record
     {
         DBConnector dbc = new DBConnector();
 
         public int Id { set; get; }
         public string Name { set; get; }
-        public int Day { set; get; }
-        public DateTime Time { set; get; }
+        public string Subjects { set; get; }
+        public int Level { set; get; }
+        public double HourlyRate { set; get; }
 
-        public Room(int id)
+        public Tutor(int id)
         {
             this.Id = id;
         }
 
-        public Room(int id, string name, int day, DateTime time)
+        public Tutor(int id, string name, string subjects, int level, double rate)
         {
             this.Id = id;
             this.Name = name;
-            this.Day = day;
-            this.Time = time;
+            this.Subjects = subjects;
+            this.Level = level;
+            this.HourlyRate = rate;
         }
 
         //get the info from DB
         public void loadRecord()
         {
-            List<string> l = dbc.get("Room", Id);
+            List<string> l = dbc.get("Tutor", Id);
 
             Name = l[1];
-            Day = Int32.Parse(l[2]);
-            Time = DateTime.Parse(l[3]);
+            Subjects = l[2];
+            Level = Int32.Parse(l[3]);
+            HourlyRate = Double.Parse(l[4]);
         }
 
         //used when updating and inserting records in DB
@@ -45,8 +48,9 @@ namespace projectTutor
 
             s[0] = Id.ToString();
             s[1] = Name;
-            s[2] = Day.ToString();
-            s[3] = Time.ToString();
+            s[2] = Subjects;
+            s[3] = Level.ToString();
+            s[4] = HourlyRate.ToString();
 
             return s;
         }
@@ -58,9 +62,10 @@ namespace projectTutor
 
             //those are name of the fields in the database
             s[0] = "Id";
-            s[1] = "Name";
-            s[2] = "Day";
-            s[3] = "Time";
+            s[1] = "name";
+            s[2] = "subjects";
+            s[3] = "level";
+            s[3] = "hourlyRate";
 
             return s;
         }
