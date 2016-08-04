@@ -43,7 +43,6 @@ namespace projectTutor
             }
         }
 
-
         private void RegForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             regForm = null;
