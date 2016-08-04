@@ -42,7 +42,7 @@ namespace projectTutor
                 {
                     List<string> arr = new List<string>();
                     for (int i = 0; i < rd.FieldCount; i++)
-                    {
+                    { 
                         arr.Add(rd[i].ToString());
                     }
                     l.Add(arr);

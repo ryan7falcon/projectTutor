@@ -42,5 +42,10 @@ namespace projectTutor
             List<string> l = dbc.get("Customer", index);
             return new Reservation(Int32.Parse(l[0]), DateTime.Parse(l[1]), Int32.Parse(l[2]), Int32.Parse(l[3]));
         }
+
+        private void btnConfirmStuId_Click(object sender, EventArgs e)
+        {
+            Student stu;
+        }
     }
 }
