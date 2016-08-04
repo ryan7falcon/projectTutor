@@ -13,6 +13,7 @@ namespace projectTutor
     public partial class MenuForm : Form
     {
         ReservationForm regForm;
+        TutorForm
 
         public MenuForm()
         {
@@ -44,5 +45,9 @@ namespace projectTutor
             regForm = null;
         }
 
+        private void tutorMainMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
