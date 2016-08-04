@@ -13,7 +13,7 @@ namespace projectTutor
     public partial class MenuForm : Form
     {
         ReservationForm regForm;
-        TutorForm
+        TutorForm tutorForm;
 
         public MenuForm()
         {
@@ -47,7 +47,21 @@ namespace projectTutor
 
         private void tutorMainMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (tutorForm == null)
+            {
+                tutorForm = new TutorForm();
+                //regForm.MdiParent = this;
+                tutorForm.FormClosed += tutorForm_FormClosed;
+                tutorForm.Show();
+            }
+            else
+            {
+                tutorForm.Activate();
+            }
+        }
+        private void tutorForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            tutorForm = null;
         }
     }
 }

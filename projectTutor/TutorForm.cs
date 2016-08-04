@@ -43,7 +43,7 @@ namespace projectTutor
         {
             DBConnector dbc = new DBConnector();
             ds = new DataSet();
-            SqlConnection con = new SqlConnection("Data Source=(localdb)\\Projects;Initial Catalog=FinalProject;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            SqlConnection con = dbc.getConnection();
             using (con)
             {
                 SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Tutor", con);
