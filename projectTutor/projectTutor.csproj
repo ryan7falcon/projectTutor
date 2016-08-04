@@ -97,6 +97,12 @@
       <DependentUpon>StudentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Tutor.cs" />
+    <Compile Include="TutorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TutorForm.Designer.cs">
+      <DependentUpon>TutorForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="MenuForm.resx">
       <DependentUpon>MenuForm.cs</DependentUpon>
     </EmbeddedResource>
