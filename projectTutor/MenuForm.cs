@@ -12,7 +12,7 @@ namespace projectTutor
 {
     public partial class MenuForm : Form
     {
-        RegistrationForm regForm;
+        ReservationForm regForm;
 
         public MenuForm()
         {
@@ -28,7 +28,7 @@ namespace projectTutor
         {
             if (regForm == null)
             {
-                regForm = new RegistrationForm();
+                regForm = new ReservationForm();
                 //regForm.MdiParent = this;
                 regForm.FormClosed += RegForm_FormClosed;
                 regForm.Show();

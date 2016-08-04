@@ -1,6 +1,6 @@
 ﻿namespace projectTutor
 {
-    partial class RegistrationForm
+    partial class ReservationForm
     {
         /// <summary>
         /// Required designer variable.
