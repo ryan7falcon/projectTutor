@@ -31,7 +31,7 @@ namespace projectTutor
         //get the info from DB
         public void loadRecord()
         {
-            List<string> l = dbc.get("Reservation", Id);
+            List<string> l = dbc.get("Student", Id);
 
             Name = l[1];
             Program = l[2];

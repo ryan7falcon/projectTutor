@@ -64,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Availability.cs" />
     <Compile Include="DBConnector.cs" />
     <Compile Include="MenuForm.cs">
       <SubType>Form</SubType>
@@ -95,6 +96,7 @@
     <Compile Include="StudentForm.Designer.cs">
       <DependentUpon>StudentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tutor.cs" />
     <EmbeddedResource Include="MenuForm.resx">
       <DependentUpon>MenuForm.cs</DependentUpon>
     </EmbeddedResource>
