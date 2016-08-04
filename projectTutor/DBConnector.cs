@@ -15,8 +15,7 @@ namespace projectTutor
         {
             SqlConnection con = new SqlConnection();
 
-            con.ConnectionString = "Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = SQLdatabase; Integrated Security = True; Connect" +
-                    " Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            con.ConnectionString = "Data Source=(localdb)\\Projects;Initial Catalog=FinalProject;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         }
         
         public SqlConnection getConnection()
