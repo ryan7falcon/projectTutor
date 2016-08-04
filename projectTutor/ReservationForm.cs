@@ -47,6 +47,7 @@ namespace projectTutor
         {
             Student stu = getStudentFromDB(Int32.Parse(nStuId.Text)); 
 
+
            
         }
 
