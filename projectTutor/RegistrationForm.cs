@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace projectTutor
 {
-    public partial class Registration : Form
+    public partial class RegistrationForm : Form
     {
         DBConnector dbc;
 
-        public Registration()
+        public RegistrationForm()
         {
             InitializeComponent();
             DBConnector dbc = new DBConnector();

@@ -78,6 +78,7 @@
             this.reservationMainMenuItem.Name = "reservationMainMenuItem";
             this.reservationMainMenuItem.Size = new System.Drawing.Size(80, 20);
             this.reservationMainMenuItem.Text = "Reservation";
+            this.reservationMainMenuItem.Click += new System.EventHandler(this.reservationMainMenuItem_Click);
             // 
             // studentMainMenuLabel
             // 
