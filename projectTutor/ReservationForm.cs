@@ -13,11 +13,13 @@ namespace projectTutor
 {
     public partial class ReservationForm : Form
     {
+        MakeReservationForm makeRegForm;
         SqlConnection con;
         DBConnector dbc;
         Reservation res;
         int week = 0;
         DateTime today = DateTime.Now;
+        Student stu;
 
         public ReservationForm()
         {
@@ -67,6 +69,7 @@ namespace projectTutor
             if (stuExist)
             {
                 lblStuIdConfirmed.Text = "Student " + nStuId.Text + " found";
+                stu = getStudentFromDB(Int32.Parse(nStuId.Text));
             }
             else
             {
@@ -81,12 +84,42 @@ namespace projectTutor
             return new Student(Int32.Parse(l[0]), l[1], l[2], Int32.Parse(l[3]));
         }
 
+        //on time slot button click open a make registration form with the picked time, day and student
+        //this form will allow to pick a tutor and a room and finish the reservation 
         private void processBtn(int day, int timeSlot)
         {
+            //get the date and time
             DateTime date = getDate(week, day);
+            string time = GetStartTime(timeSlot);
+            //get the student
+            checkStudent();
+            if (stu == null)
+            {
+                MessageBox.Show("Choose a valid student Id first");
+            }
+            else
+            {
+                //open make reservation form
 
+                if (makeRegForm == null)
+                {
+                    makeRegForm = new MakeReservationForm(date, time, stu);
+                    makeRegForm.FormClosed += MakeRegForm_FormClosed;
+                    makeRegForm.Show();
+                }
+                else
+                {
+                    makeRegForm.Activate();
+                }
+            }
         }
 
+        private void MakeRegForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            makeRegForm = null;
+        }
+
+        //get a string for the timeslot from an int
         private string GetStartTime(int timeslot)
         {
             string time;
@@ -130,24 +163,34 @@ namespace projectTutor
             return time;
         }
 
-        private void updateCalendar()
+        //enable and disable buttons depending on availability
+        private void enableButtons()
         {
-            PopulateDates();
 
         }
 
+        //update dates and buttons to reflect another week
+        private void updateCalendar()
+        {
+            PopulateDates();
+            enableButtons();
+        }
+
+        //go to next week
         private void btnNext_Click(object sender, EventArgs e)
         {
             week++;
             updateCalendar();
         }
 
+        //go to previous week
         private void btnPrev_Click(object sender, EventArgs e)
         {
             week--;
             updateCalendar();
         }
 
+        //on time slots button click (day, timeslot)
         private void b1_1_Click(object sender, EventArgs e)
         {
             processBtn(1, 1);

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace projectTutor
 {
-    class Student : Record
+    public class Student : Record
     {
         DBConnector dbc = new DBConnector();
 

@@ -84,6 +84,11 @@
             this.nStuId.Name = "nStuId";
             this.nStuId.Size = new System.Drawing.Size(120, 20);
             this.nStuId.TabIndex = 4;
+            this.nStuId.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // lblStuIdConfirmed
             // 
