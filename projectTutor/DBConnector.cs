@@ -15,7 +15,8 @@ namespace projectTutor
         {
             con = new SqlConnection();
 
-            con.ConnectionString = "Data Source=(localdb)\\Projects;Initial Catalog=FinalProject;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            con.ConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\javel\\Documents\\dataContainers.mdf;Integrated Security=True;Connect Timeout=30";
+                                                                                                                
         }
         
         public SqlConnection getConnection()
@@ -262,7 +263,7 @@ namespace projectTutor
             }
             catch (SqlException ex)
             {
-                Console.WriteLine("Error in adding a new record: " + ex.Message);
+                Console.WriteLine("Error in adding a poop record: " + ex.Message);
                 return -1;
             }
         }
