@@ -60,6 +60,7 @@
             this.studentMainMenuItem.Name = "studentMainMenuItem";
             this.studentMainMenuItem.Size = new System.Drawing.Size(60, 20);
             this.studentMainMenuItem.Text = "Student";
+            this.studentMainMenuItem.Click += new System.EventHandler(this.studentMainMenuItem_Click);
             // 
             // tutorMainMenuItem
             // 
@@ -73,6 +74,7 @@
             this.roomMainMenuItem.Name = "roomMainMenuItem";
             this.roomMainMenuItem.Size = new System.Drawing.Size(51, 20);
             this.roomMainMenuItem.Text = "Room";
+            this.roomMainMenuItem.Click += new System.EventHandler(this.roomMainMenuItem_Click);
             // 
             // reservationMainMenuItem
             // 
