@@ -13,9 +13,14 @@ namespace projectTutor
 {
     public partial class StudentForm : Form
     {
+        SqlConnection con;
+        DBConnector dbc;
+        Student student;
+
         public StudentForm()
         {
             InitializeComponent();
+            dbc = new DBConnector();
         }
 
         private void StudentForm_Load(object sender, EventArgs e)
@@ -24,31 +29,19 @@ namespace projectTutor
         }
         private void saveStudenFormButton_Click(object sender, EventArgs e)
         {
-            //Get name
-            //Get program
-            //Get startdate
+            con = dbc.getConnection();
+            
+            //Get all the inputs from user 
             String studentName = nameStudentFormMaskedBox.Text;
             String studentProgram = programStudentFormMaskedBox.Text;
-            String startDate = startDateFormMaskedBox.Text;
-       
+            int startDate = Convert.ToInt32(startDateFormMaskedBox.Text);
+
+            //Add to student object
+            student = new Student(5, studentName, studentProgram, startDate);
 
 
-
-
-            /*Establish a connection from dbo.Student table
-            string connectionString = "Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\javel\Documents\dataContainers.mdf; Integrated Security = True; Connect Timeout = 30";
-           
-            //Establish data adapter (data source, disconnected data source)
-            SqlConnection connection = new SqlConnection(connectionString);
-
-            //Create a DataSet
-            DataSet data = new DataSet();
-
-            //Pass the data from the customer table to the dataset
-            SqlDataAdapter studentDataAdapter = new SqlDataAdapter("SELECT * FROM Student", connection);
-            studentDataAdapter.Fill(data, "Student");
-            */
-
+            //Pass data to database
+            dbc.insert("Student", student);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
