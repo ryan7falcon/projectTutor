@@ -101,16 +101,16 @@ namespace projectTutor
             {
                 //open make reservation form
 
-                if (makeRegForm == null)
+                if (makeRegForm != null)
                 {
-                    makeRegForm = new MakeReservationForm(date, time, stu);
-                    makeRegForm.FormClosed += MakeRegForm_FormClosed;
-                    makeRegForm.Show();
+                    makeRegForm.Close();
                 }
-                else
-                {
-                    makeRegForm.Activate();
-                }
+                
+                makeRegForm = new MakeReservationForm(date, time, stu);
+                makeRegForm.FormClosed += MakeRegForm_FormClosed;
+                makeRegForm.Show();
+                
+               
             }
         }
 
