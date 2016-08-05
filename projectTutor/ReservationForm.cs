@@ -210,5 +210,235 @@ namespace projectTutor
         {
             processBtn(1, 4);
         }
+
+        private void b1_5_Click(object sender, EventArgs e)
+        {
+            processBtn(1, 5);
+        }
+
+        private void b1_6_Click(object sender, EventArgs e)
+        {
+            processBtn(1, 6);
+        }
+
+        private void b1_7_Click(object sender, EventArgs e)
+        {
+            processBtn(1, 7);
+        }
+
+        private void b1_8_Click(object sender, EventArgs e)
+        {
+            processBtn(1, 8);
+        }
+
+        private void b1_9_Click(object sender, EventArgs e)
+        {
+            processBtn(1, 9);
+        }
+
+        private void b1_10_Click(object sender, EventArgs e)
+        {
+            processBtn(1, 10);
+        }
+
+        private void b2_1_Click(object sender, EventArgs e)
+        {
+            processBtn(2, 1);
+        }
+
+        private void b2_2_Click(object sender, EventArgs e)
+        {
+            processBtn(2, 2);
+        }
+
+        private void b2_3_Click(object sender, EventArgs e)
+        {
+            processBtn(2, 3);
+        }
+
+        private void b2_4_Click(object sender, EventArgs e)
+        {
+            processBtn(2, 4);
+        }
+
+        private void b2_5_Click(object sender, EventArgs e)
+        {
+            processBtn(2, 5);
+        }
+
+        private void b2_6_Click(object sender, EventArgs e)
+        {
+            processBtn(2, 6);
+        }
+
+        private void b2_7_Click(object sender, EventArgs e)
+        {
+            processBtn(2, 7);
+        }
+
+        private void b2_8_Click(object sender, EventArgs e)
+        {
+            processBtn(2, 8);
+        }
+
+        private void b2_9_Click(object sender, EventArgs e)
+        {
+            processBtn(2, 9);
+        }
+
+        private void b2_10_Click(object sender, EventArgs e)
+        {
+            processBtn(2, 10);
+        }
+
+        private void b3_1_Click(object sender, EventArgs e)
+        {
+            processBtn(3, 1);
+        }
+
+        private void b3_2_Click(object sender, EventArgs e)
+        {
+            processBtn(3, 2);
+        }
+
+        private void b3_3_Click(object sender, EventArgs e)
+        {
+            processBtn(3, 3);
+        }
+
+        private void b3_4_Click(object sender, EventArgs e)
+        {
+            processBtn(3, 4);
+        }
+
+        private void b3_5_Click(object sender, EventArgs e)
+        {
+            processBtn(3, 5);
+        }
+
+        private void b3_6_Click(object sender, EventArgs e)
+        {
+            processBtn(3, 6);
+        }
+
+        private void b3_7_Click(object sender, EventArgs e)
+        {
+            processBtn(3, 7);
+        }
+
+        private void b3_8_Click(object sender, EventArgs e)
+        {
+            processBtn(3, 8);
+        }
+
+        private void b3_9_Click(object sender, EventArgs e)
+        {
+            processBtn(3, 9);
+        }
+
+        private void b3_10_Click(object sender, EventArgs e)
+        {
+            processBtn(3, 10);
+        }
+
+        private void b4_1_Click(object sender, EventArgs e)
+        {
+            processBtn(4, 1);
+        }
+
+        private void b4_2_Click(object sender, EventArgs e)
+        {
+            processBtn(4, 2);
+        }
+
+        private void b4_3_Click(object sender, EventArgs e)
+        {
+            processBtn(4, 3);
+        }
+
+        private void b4_4_Click(object sender, EventArgs e)
+        {
+            processBtn(4, 4);
+        }
+
+        private void b4_5_Click(object sender, EventArgs e)
+        {
+            processBtn(4, 5);
+        }
+
+        private void b4_6_Click(object sender, EventArgs e)
+        {
+            processBtn(4, 6);
+        }
+
+        private void b4_7_Click(object sender, EventArgs e)
+        {
+            processBtn(4, 7);
+        }
+
+        private void b4_8_Click(object sender, EventArgs e)
+        {
+            processBtn(4, 8);
+        }
+
+        private void b4_9_Click(object sender, EventArgs e)
+        {
+            processBtn(4, 9);
+        }
+
+        private void b4_10_Click(object sender, EventArgs e)
+        {
+            processBtn(4, 10);
+        }
+
+        private void b5_1_Click(object sender, EventArgs e)
+        {
+            processBtn(5, 1);
+        }
+
+        private void b5_2_Click(object sender, EventArgs e)
+        {
+            processBtn(5, 2);
+        }
+
+        private void b5_3_Click(object sender, EventArgs e)
+        {
+            processBtn(5, 3);
+        }
+
+        private void b5_4_Click(object sender, EventArgs e)
+        {
+            processBtn(5, 4);
+        }
+
+        private void b5_5_Click(object sender, EventArgs e)
+        {
+            processBtn(5, 5);
+        }
+
+        private void b5_6_Click(object sender, EventArgs e)
+        {
+            processBtn(5, 6);
+        }
+
+        private void b5_7_Click(object sender, EventArgs e)
+        {
+            processBtn(5, 7);
+        }
+
+        private void b5_8_Click(object sender, EventArgs e)
+        {
+            processBtn(5, 8);
+        }
+
+        private void b5_9_Click(object sender, EventArgs e)
+        {
+            processBtn(5, 9);
+        }
+
+        private void b5_10_Click(object sender, EventArgs e)
+        {
+            processBtn(5, 10);
+        }
     }
 }

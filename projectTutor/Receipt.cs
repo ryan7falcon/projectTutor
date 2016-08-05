@@ -15,6 +15,8 @@ namespace projectTutor
         public Receipt(DateTime date, string time, Student stu, Tutor tut, string room)
         {
             InitializeComponent();
+            lblStudent.Text = stu.Name;
+            lblDate.Text = date.ToShortDateString() + " " + time;
         }
 
         private void btnOk_Click(object sender, EventArgs e)
