@@ -23,10 +23,7 @@ namespace projectTutor
             dbc = new DBConnector();
 
             //Testing load student to List
-            getStudents();
-          
-
-            
+            getStudents();   
             
         }
 
@@ -66,25 +63,23 @@ namespace projectTutor
 
             //Get the current students in the database
             List<List<string>> studentsList = dbc.getList("Student");
-
             //Loop through each to get a student in studentList
             foreach (List<string> student in studentsList)
             {
                 //Pass each student to class Student
                 Student aStudent = new Student(Int32.Parse(student[0]), student[1],
                                                 student[2], Int32.Parse(student[3]));
+
+
                 //Pass student object to List object
-                ListViewItem studentItem = new ListViewItem(new[] {
-                    aStudent.Id.ToString(), aStudent.Name,
-                    aStudent.Program, aStudent.StartYear.ToString()
+                /*Need to refactor*/
+                ListViewItem studentItem = new ListViewItem(new[]{
+                    aStudent.Id.ToString() + " " + aStudent.Name + " " +
+                    aStudent.Program + " " + aStudent.StartYear.ToString()
                 });
                 //Append to studentLisView to display
                 studentListView.Items.Add(studentItem);
             }
-            
-            
-
-
         }
     }
 }

@@ -152,11 +152,13 @@
             // 
             // studentListView
             // 
-            this.studentListView.Location = new System.Drawing.Point(304, 66);
+            this.studentListView.FullRowSelect = true;
+            this.studentListView.Location = new System.Drawing.Point(266, 66);
             this.studentListView.Name = "studentListView";
-            this.studentListView.Size = new System.Drawing.Size(282, 257);
+            this.studentListView.Size = new System.Drawing.Size(358, 257);
             this.studentListView.TabIndex = 0;
             this.studentListView.UseCompatibleStateImageBehavior = false;
+            this.studentListView.View = System.Windows.Forms.View.List;
             // 
             // StudentForm
             // 
