@@ -13,7 +13,6 @@ namespace projectTutor
     public partial class MenuForm : Form
     {
         ReservationForm regForm;
-        TutorForm
 
         public MenuForm()
         {
