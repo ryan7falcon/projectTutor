@@ -26,8 +26,11 @@ namespace projectTutor
             this.stu = stu;
             lblStudent.Text = stu.Name;
             lblDate.Text = date.ToShortDateString() + " " + time;
+
+            //TODO: get a list of Tutors and rooms for the chosen time, show them in combo boxes, update tut and room vars, print the price
         }
 
+        
 
         private void btnSubmitReservation_Click(object sender, EventArgs e)
         {
@@ -41,6 +44,16 @@ namespace projectTutor
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void cbTutor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //TODO: select a tutor
+        }
+
+        private void cbRoom_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //TODO: select a room
         }
     }
 }

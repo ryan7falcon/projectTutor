@@ -49,6 +49,7 @@
             this.cbTutor.Name = "cbTutor";
             this.cbTutor.Size = new System.Drawing.Size(121, 21);
             this.cbTutor.TabIndex = 0;
+            this.cbTutor.SelectedIndexChanged += new System.EventHandler(this.cbTutor_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -75,6 +76,7 @@
             this.cbRoom.Name = "cbRoom";
             this.cbRoom.Size = new System.Drawing.Size(121, 21);
             this.cbRoom.TabIndex = 3;
+            this.cbRoom.SelectedIndexChanged += new System.EventHandler(this.cbRoom_SelectedIndexChanged);
             // 
             // btnSubmitReservation
             // 

@@ -29,6 +29,7 @@ namespace projectTutor
             PopulateDates();
         }
 
+        //print dates below each day of the week
         private void PopulateDates()
         {           
             lblDay1.Text = getDate(week, 1).ToShortDateString();
@@ -38,7 +39,7 @@ namespace projectTutor
             lblDay5.Text = getDate(week, 5).ToShortDateString();
         }
 
-
+        //get a date given the week and day of the week
         private DateTime getDate(int week, int day)
         {
            return today.AddDays(day- (int)today.DayOfWeek + 7*week);
@@ -52,24 +53,21 @@ namespace projectTutor
             return new Reservation(Int32.Parse(l[0]), DateTime.Parse(l[1]), Int32.Parse(l[2]), Int32.Parse(l[3]));
         }
 
+        //check if a student with given Id exists and display their name
         private void btnConfirmStuId_Click(object sender, EventArgs e)
-        {
-            //check if student with the given id exists and reflect it in text of the label lblStuIdConfirmed
-            checkStudent();
-
-            //override buttons
-           
-           
+        {           
+            checkStudent();            
         }
 
+        //check if student with the given id exists and reflect it in text of the label lblStuIdConfirmed
         private void checkStudent()
         {
             bool stuExist = dbc.checkIfExist("Student", Int32.Parse(nStuId.Text));
 
             if (stuExist)
-            {
-                lblStuIdConfirmed.Text = "Student " + nStuId.Text + " found";
+            {               
                 stu = getStudentFromDB(Int32.Parse(nStuId.Text));
+                lblStuIdConfirmed.Text = stu.Name;
             }
             else
             {
@@ -77,7 +75,7 @@ namespace projectTutor
             }
         }
 
-
+        //get a Student obj given an Id by looking up in the database
         private Student getStudentFromDB(int index)
         {
             List<string> l = dbc.get("Student", index);
@@ -166,7 +164,12 @@ namespace projectTutor
         //enable and disable buttons depending on availability
         private void enableButtons()
         {
+           //TODO: enable all buttons
+        }
 
+        private void disableButtons()
+        {
+            //TODO: disable buttons that have no matching tutor and room available for their time
         }
 
         //update dates and buttons to reflect another week
@@ -174,6 +177,7 @@ namespace projectTutor
         {
             PopulateDates();
             enableButtons();
+            disableButtons();
         }
 
         //go to next week

@@ -17,6 +17,7 @@ namespace projectTutor
             InitializeComponent();
             lblStudent.Text = stu.Name;
             lblDate.Text = date.ToShortDateString() + " " + time;
+            //TODO: display tutor, room and price
         }
 
         private void btnOk_Click(object sender, EventArgs e)
