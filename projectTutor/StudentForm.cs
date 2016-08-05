@@ -21,6 +21,13 @@ namespace projectTutor
         {
             InitializeComponent();
             dbc = new DBConnector();
+
+            //Testing load student to List
+            getStudents();
+          
+
+            
+            
         }
 
         private void StudentForm_Load(object sender, EventArgs e)
@@ -36,16 +43,47 @@ namespace projectTutor
             String studentProgram = programStudentFormMaskedBox.Text;
             int startDate = Convert.ToInt32(startDateFormMaskedBox.Text);
 
-            //Add to student object
-            student = new Student(5, studentName, studentProgram, startDate);
+            //Get the last id of the table
+            //Add one then increase by 1
+            int id = dbc.getLastId("Student") + 1;
 
+            //Add to student object
+            student = new Student(id, studentName, studentProgram, startDate);
 
             //Pass data to database
             dbc.insert("Student", student);
+
+            //Show that it is inserted
+            MessageBox.Show("Added students");
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+       
+
+        //Load all the current students in the database Students
+        private void getStudents()
         {
+            studentListView.Clear();
+
+            //Get the current students in the database
+            List<List<string>> studentsList = dbc.getList("Student");
+
+            //Loop through each to get a student in studentList
+            foreach (List<string> student in studentsList)
+            {
+                //Pass each student to class Student
+                Student aStudent = new Student(Int32.Parse(student[0]), student[1],
+                                                student[2], Int32.Parse(student[3]));
+                //Pass student object to List object
+                ListViewItem studentItem = new ListViewItem(new[] {
+                    aStudent.Id.ToString(), aStudent.Name,
+                    aStudent.Program, aStudent.StartYear.ToString()
+                });
+                //Append to studentLisView to display
+                studentListView.Items.Add(studentItem);
+            }
+            
+            
+
 
         }
     }
