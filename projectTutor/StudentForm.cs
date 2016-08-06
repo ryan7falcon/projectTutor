@@ -6,8 +6,10 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.ListView;
 
 namespace projectTutor
 {
@@ -17,10 +19,22 @@ namespace projectTutor
         DBConnector dbc;
         Student student;
 
+        //Global id for student in this form
+        //The user should not be able to change their own id
+        //Use this instead of nId
+        int studentId;
+
         public StudentForm()
         {
             InitializeComponent();
             dbc = new DBConnector();
+
+            //Get the first id of the student
+            int id = dbc.getFirstId("Student");
+
+            //Get the first student from db
+            student = getStudent(id);
+            studentId = id;
 
             //Testing load student to List
             getStudents();   
@@ -52,9 +66,62 @@ namespace projectTutor
 
             //Show that it is inserted
             MessageBox.Show("Added students");
+
+            //Reload the form
+            getStudents();
+
+            fillForm();
         }
 
-       
+        //TODO: Take out 
+        private void deleteStudentFormButton_Click(object sender, EventArgs e)
+        {
+            //fillForm.studentId is extracted
+            dbc.delete("Student", studentId);
+            //Update students list
+            getStudents();
+
+            //Refresh form
+            nameStudentFormMaskedBox.Text = "";
+            programStudentFormMaskedBox.Text = "";
+            startDateFormMaskedBox.Text = "";
+
+
+
+
+        }
+
+
+
+        private void studentListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectedListViewItemCollection studentItems = studentListView.SelectedItems;
+            if (studentItems.Count > 0)
+            {
+                //Patch for now//
+                //Find the student id
+                Regex regex = new Regex(@"^\d+");
+                Match match = regex.Match(studentItems[0].Text);
+
+                //Select the id number of the selected student
+                int index = Int32.Parse(match.ToString());
+
+                //Get the selected Student from the database student
+                student = getStudent(index);
+
+                fillForm();
+
+            }
+
+        }
+
+        //Load a specific student from the database students
+        private Student getStudent(int index)
+        {
+            List<string> aStudent = dbc.get("Student", index);
+            return new Student(Int32.Parse(aStudent[0]), aStudent[1],
+                                aStudent[2], Int32.Parse(aStudent[3]));
+        }
 
         //Load all the current students in the database Students
         private void getStudents()
@@ -80,6 +147,19 @@ namespace projectTutor
                 //Append to studentLisView to display
                 studentListView.Items.Add(studentItem);
             }
+        }
+
+        private void fillForm()
+        {
+            studentId = student.Id;
+            nameStudentFormMaskedBox.Text = student.Name;
+            programStudentFormMaskedBox.Text = student.Program;
+            startDateFormMaskedBox.Text = student.StartYear.ToString();
+
+        }
+
+        private void nameStudentFormMaskedBox_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
         }
     }
 }
