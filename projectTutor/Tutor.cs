@@ -30,6 +30,25 @@ namespace projectTutor
             this.HourlyRate = rate;
         }
 
+        public static string getLevelName(int level)
+        {
+            switch (level)
+            {
+                case 0:
+                    return "Beginner";
+                case 1:
+                    return "Intermediate";
+                case 2:
+                    return "Advanced";
+                case 3:
+                    return "Master";
+                case 4:
+                    return "God";
+                default:
+                    return "Unknown";
+            }
+        }
+
         //get the info from DB
         public void loadRecord()
         {
@@ -44,7 +63,7 @@ namespace projectTutor
         //used when updating and inserting records in DB
         override public string[] getParameters()
         {
-            string[] s = new string[9];
+            string[] s = new string[5];
 
             s[0] = Id.ToString();
             s[1] = Name;
@@ -58,7 +77,7 @@ namespace projectTutor
         //used when updating and inserting records in DB
         override public string[] getParameterNames()
         {
-            string[] s = new string[9];
+            string[] s = new string[5];
 
             //those are name of the fields in the database
             s[0] = "Id";

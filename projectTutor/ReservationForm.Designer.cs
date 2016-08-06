@@ -96,6 +96,7 @@
             this.b5_3 = new System.Windows.Forms.Button();
             this.b5_2 = new System.Windows.Forms.Button();
             this.b5_1 = new System.Windows.Forms.Button();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.nStuId)).BeginInit();
             this.SuspendLayout();
             // 
@@ -917,6 +918,7 @@
         private System.Windows.Forms.Button b5_3;
         private System.Windows.Forms.Button b5_2;
         private System.Windows.Forms.Button b5_1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

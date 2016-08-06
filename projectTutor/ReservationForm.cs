@@ -50,7 +50,7 @@ namespace projectTutor
         private Reservation getReservationFromDB(int index)
         {
             List<string> l = dbc.get("Reservation", index);
-            return new Reservation(Int32.Parse(l[0]), DateTime.Parse(l[1]), Int32.Parse(l[2]), Int32.Parse(l[3]));
+            return new Reservation(Int32.Parse(l[0]), Int32.Parse(l[1]), DateTime.Parse(l[2]), Int32.Parse(l[3]), Int32.Parse(l[4]));
         }
 
         //check if a student with given Id exists and display their name
@@ -88,7 +88,6 @@ namespace projectTutor
         {
             //get the date and time
             DateTime date = getDate(week, day);
-            string time = GetStartTime(timeSlot);
             //get the student
             checkStudent();
             if (stu == null)
@@ -103,8 +102,26 @@ namespace projectTutor
                 {
                     makeRegForm.Close();
                 }
-                
-                makeRegForm = new MakeReservationForm(date, time, stu);
+
+                List<Tutor> tuts = new List<Tutor>();
+                List<Room> rooms = new List<Room>();
+
+                //TODO: change getList
+                List < List < string >> tutorList = dbc.getList("Tutor");
+                foreach (List<string> list in tutorList)
+                {
+                    Tutor tut = new Tutor(Int32.Parse(list[0]), list[1], list[2], Int32.Parse(list[3]), Double.Parse(list[4]));
+                    tuts.Add(tut);
+                }
+
+                List<List<string>> roomList = dbc.getList("Room");
+                foreach (List<string> list in roomList)
+                {
+                    Room r = new Room(Int32.Parse(list[0]), list[1], Int32.Parse(list[2]), DateTime.Parse(list[3]));
+                    rooms.Add(r);
+                }
+
+                makeRegForm = new MakeReservationForm(date, timeSlot, stu, tuts, rooms);
                 makeRegForm.FormClosed += MakeRegForm_FormClosed;
                 makeRegForm.Show();
                 
@@ -117,49 +134,7 @@ namespace projectTutor
             makeRegForm = null;
         }
 
-        //get a string for the timeslot from an int
-        private string GetStartTime(int timeslot)
-        {
-            string time;
-            switch (timeslot)
-            {
-                case 1:
-                    time = "09:00:00";
-                    break;
-                case 2:
-                    time = "10:00:00";
-                    break;
-                case 3:
-                    time = "11:00:00";
-                    break;
-                case 4:
-                    time = "12:00:00";
-                    break;
-                case 5:
-                    time = "13:00:00";
-                    break;
-                case 6:
-                    time = "14:00:00";
-                    break;
-                case 7:
-                    time = "15:00:00";
-                    break;
-                case 8:
-                    time = "16:00:00";
-                    break;
-                case 9:
-                    time = "17:00:00";
-                    break;
-                case 10:
-                    time = "18:00:00";
-                    break;
-                default:
-                    time = "09:00:00";
-                    break;
-            }
-
-            return time;
-        }
+       
 
         //enable and disable buttons depending on availability
         private void enableButtons()

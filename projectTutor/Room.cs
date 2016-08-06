@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace projectTutor
 {
-    class Room : Record
+    public class Room : Record
     {
         DBConnector dbc = new DBConnector();
 
@@ -41,7 +41,7 @@ namespace projectTutor
         //used when updating and inserting records in DB
         override public string[] getParameters()
         {
-            string[] s = new string[9];
+            string[] s = new string[4];
 
             s[0] = Id.ToString();
             s[1] = Name;
@@ -54,7 +54,7 @@ namespace projectTutor
         //used when updating and inserting records in DB
         override public string[] getParameterNames()
         {
-            string[] s = new string[9];
+            string[] s = new string[4];
 
             //those are name of the fields in the database
             s[0] = "Id";

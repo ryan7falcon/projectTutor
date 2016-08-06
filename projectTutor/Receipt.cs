@@ -12,12 +12,14 @@ namespace projectTutor
 {
     public partial class Receipt : Form
     {
-        public Receipt(DateTime date, string time, Student stu, Tutor tut, string room)
+        public Receipt(DateTime date, string time, Student stu, Tutor tut, Room room)
         {
             InitializeComponent();
             lblStudent.Text = stu.Name;
             lblDate.Text = date.ToShortDateString() + " " + time;
-            //TODO: display tutor, room and price
+            lblRoom.Text = room.Name;
+            lblPrice.Text = "$" + tut.HourlyRate.ToString();
+            lblTutor.Text = tut.Name;
         }
 
         private void btnOk_Click(object sender, EventArgs e)
