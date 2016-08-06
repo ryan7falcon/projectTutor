@@ -15,7 +15,6 @@ namespace projectTutor
 {
     public partial class StudentForm : Form
     {
-        SqlConnection con;
         DBConnector dbc;
         Student student;
 
@@ -37,7 +36,9 @@ namespace projectTutor
             studentId = id;
 
             //Testing load student to List
-            getStudents();   
+            getStudents();
+
+            fillForm();
             
         }
 
@@ -47,48 +48,53 @@ namespace projectTutor
         }
         private void saveStudenFormButton_Click(object sender, EventArgs e)
         {
-            con = dbc.getConnection();
-            
-            //Get all the inputs from user 
-            String studentName = nameStudentFormMaskedBox.Text;
-            String studentProgram = programStudentFormMaskedBox.Text;
-            int startDate = Convert.ToInt32(startDateFormMaskedBox.Text);
 
-            //Get the last id of the table
-            //Add one then increase by 1
-            int id = dbc.getLastId("Student") + 1;
+            if (dbc.checkIfExist("Student", studentId))
+            {
+                //Update the input boxes
+                student.Name = nameStudentFormMaskedBox.Text;
+                student.Program = programStudentFormMaskedBox.Text;
+                student.StartYear = Int32.Parse(startDateFormMaskedBox.Text);
 
-            //Add to student object
-            student = new Student(id, studentName, studentProgram, startDate);
+                //Pass the new updated student object to the database
+                dbc.update("Student", student);
+                MessageBox.Show("Updated student");
+            }
+            else
+            {
+                //Get all the inputs from user 
+                String studentName = nameStudentFormMaskedBox.Text;
+                String studentProgram = programStudentFormMaskedBox.Text;
+                int startDate = Convert.ToInt32(startDateFormMaskedBox.Text);
 
-            //Pass data to database
-            dbc.insert("Student", student);
+                //Get the last id of the table
+                //Add one then increase by 1
+                int id = dbc.getLastId("Student") + 1;
 
-            //Show that it is inserted
-            MessageBox.Show("Added students");
+                //Add to student object
+                student = new Student(id, studentName, studentProgram, startDate);
 
-            //Reload the form
-            getStudents();
+                //Pass data to database
+                dbc.insert("Student", student);
 
-            fillForm();
-        }
+                //Show that it is inserted
+                MessageBox.Show("Added students");
+            }
+                //Reload the form
+                getStudents();
+                refreshForm();
+          }
 
-        //TODO: Take out 
         private void deleteStudentFormButton_Click(object sender, EventArgs e)
         {
             //fillForm.studentId is extracted
             dbc.delete("Student", studentId);
+
+            MessageBox.Show("Deleted student");
+
             //Update students list
             getStudents();
-
-            //Refresh form
-            nameStudentFormMaskedBox.Text = "";
-            programStudentFormMaskedBox.Text = "";
-            startDateFormMaskedBox.Text = "";
-
-
-
-
+            refreshForm();
         }
 
 
@@ -155,6 +161,15 @@ namespace projectTutor
             nameStudentFormMaskedBox.Text = student.Name;
             programStudentFormMaskedBox.Text = student.Program;
             startDateFormMaskedBox.Text = student.StartYear.ToString();
+
+        }
+
+        private void refreshForm()
+        {
+            studentId = 0;
+            nameStudentFormMaskedBox.Text = "";
+            programStudentFormMaskedBox.Text = "";
+            startDateFormMaskedBox.Text = "";
 
         }
 
