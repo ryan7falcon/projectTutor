@@ -57,6 +57,56 @@ namespace projectTutor
             return l;
         }
 
+        //select
+        public List<List<string>> getListWhere(string table, string[] pNames, string[] pValues)
+        {
+            List<List<string>> l = new List<List<string>>();
+
+            try
+            {
+                con.Open();
+
+
+                //constucts a string like tutorId=@1, tutorName=@2
+                string setString = "";
+                int lastIndex = pNames.Length - 1;              
+                for (int i = 0; i < lastIndex; i++)
+                {
+                    setString += pNames[i] + "=@" + i + " AND ";
+                }
+
+                setString += pNames[lastIndex] + "=@" + lastIndex;
+
+                SqlCommand command = new SqlCommand();
+                command.CommandText = "select * from [" + table + "] where " + setString + ";";
+
+                for (int i = 0; i < pValues.Length; i++)
+                {
+                    command.Parameters.AddWithValue("@" + i, pValues[i]);
+                }
+               
+                command.Connection = con;
+                SqlDataReader rd = command.ExecuteReader();
+
+                while (rd.Read())
+                {
+                    List<string> arr = new List<string>();
+                    for (int i = 0; i < rd.FieldCount; i++)
+                    {
+                        arr.Add(rd[i].ToString());
+                    }
+                    l.Add(arr);
+                }
+                con.Close();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error in getting the list" + ex.Message);
+            }
+
+            return l;
+        }
+
         //get the first id in the database
         public int getFirstId(string table)
         {
@@ -188,6 +238,7 @@ namespace projectTutor
             string[] pnames = r.getParameterNames();
 
             //construct a string for the update statement
+            //like tutorName=@1, tutorLevel=@2. Counter starts with 1 so that id is not included
             string setString = "";
             int lastIndex = pnames.Length - 1;
             for (int i = 1; i < lastIndex; i++)

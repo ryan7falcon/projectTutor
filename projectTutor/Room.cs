@@ -30,11 +30,17 @@ namespace projectTutor
 
         public static List<Room> getAll()
         {
-            List<Room> rooms = new List<Room>();
+           
             DBConnector dbc = new DBConnector();
-
             List<List<string>> roomList = dbc.getList("Room");
-            foreach (List<string> list in roomList)
+            return parseStringList(roomList);
+        }
+
+        public static List<Room> parseStringList(List<List<string>> strList)
+        {
+            List<Room> rooms = new List<Room>();
+
+            foreach (List<string> list in strList)
             {
                 Room r = new Room(Int32.Parse(list[0]), list[1], Int32.Parse(list[2]), DateTime.Parse(list[3]));
                 rooms.Add(r);
@@ -43,8 +49,18 @@ namespace projectTutor
             return rooms;
         }
 
-    //get the info from DB
-    public void loadRecord()
+        public static List<Room> getForDayAndTime(string[] parameters)
+        {
+            DBConnector dbc = new DBConnector();
+            string[] paramNames = new string[2];
+            paramNames[0] = "Day";
+            paramNames[1] = "Time";
+            List<List<string>> list = dbc.getListWhere("Room", paramNames, parameters);
+            return parseStringList(list); ;
+        }
+
+        //get the info from DB
+        public void loadRecord()
         {
             List<string> l = dbc.get("Room", Id);
 

@@ -27,20 +27,35 @@ namespace projectTutor
             this.Time = time;
             this.TutorId = tutorId;
         }
-
-        public static List<Availability> getAll()
+        public static List<Availability> parseStringList(List<List<string>> strList)
         {
             List<Availability> avs = new List<Availability>();
-            DBConnector dbc = new DBConnector();
 
-            List<List<string>> avList = dbc.getList("Availability");
-            foreach (List<string> list in avList)
+            foreach (List<string> list in strList)
             {
                 Availability av = new Availability(Int32.Parse(list[0]), Int32.Parse(list[1]), DateTime.Parse(list[2]), Int32.Parse(list[3]));
                 avs.Add(av);
             }
 
             return avs;
+        }
+
+        public static List<Availability> getAll()
+        {
+           
+            DBConnector dbc = new DBConnector();
+            List<List<string>> avList = dbc.getList("Availability");
+            return parseStringList(avList);
+        }
+
+        public static List<Availability> getForDayAndTime(string[] parameters)
+        {
+            DBConnector dbc = new DBConnector();
+            string[] paramNames = new string[2];
+            paramNames[0] = "Day";
+            paramNames[1] = "Time";
+            List<List<string>> avList = dbc.getListWhere("Availability", paramNames, parameters);
+            return parseStringList(avList); ;
         }
 
         //get the info from DB
