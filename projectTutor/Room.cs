@@ -54,7 +54,7 @@ namespace projectTutor
         //used when updating and inserting records in DB
         override public string[] getParameterNames()
         {
-            string[] s = new string[9];
+            string[] s = new string[4];
 
             //those are name of the fields in the database
             s[0] = "Id";
