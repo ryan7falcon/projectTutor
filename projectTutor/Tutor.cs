@@ -30,6 +30,21 @@ namespace projectTutor
             this.HourlyRate = rate;
         }
 
+        public static List<Tutor> getAll()
+        {
+            List<Tutor> tuts = new List<Tutor>();
+            DBConnector dbc = new DBConnector();
+
+            List<List<string>> tutorList = dbc.getList("Tutor");
+            foreach (List<string> list in tutorList)
+            {
+                Tutor tut = new Tutor(Int32.Parse(list[0]), list[1], list[2], Int32.Parse(list[3]), Double.Parse(list[4]));
+                tuts.Add(tut);
+            }
+
+            return tuts;
+        }
+
         public static string getLevelName(int level)
         {
             switch (level)

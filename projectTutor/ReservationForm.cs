@@ -106,20 +106,22 @@ namespace projectTutor
                 List<Tutor> tuts = new List<Tutor>();
                 List<Room> rooms = new List<Room>();
 
-                //TODO: change getList
-                List < List < string >> tutorList = dbc.getList("Tutor");
-                foreach (List<string> list in tutorList)
-                {
-                    Tutor tut = new Tutor(Int32.Parse(list[0]), list[1], list[2], Int32.Parse(list[3]), Double.Parse(list[4]));
-                    tuts.Add(tut);
-                }
+                //TODO: change getList to something that gets relevant info for the chosen date and time
+                //check availability table for the date and time
 
-                List<List<string>> roomList = dbc.getList("Room");
-                foreach (List<string> list in roomList)
-                {
-                    Room r = new Room(Int32.Parse(list[0]), list[1], Int32.Parse(list[2]), DateTime.Parse(list[3]));
-                    rooms.Add(r);
-                }
+                //check room table for the date and time
+
+                //check reservation table for the date, time, tutor and room
+
+                //discard availability records and room records according to reservations
+
+                //if there is something left, proceed
+
+                //get all tutors
+                tuts = Tutor.getAll();
+
+                //get all rooms
+                rooms = Room.getAll();
 
                 makeRegForm = new MakeReservationForm(date, timeSlot, stu, tuts, rooms);
                 makeRegForm.FormClosed += MakeRegForm_FormClosed;

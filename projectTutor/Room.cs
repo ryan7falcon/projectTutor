@@ -28,8 +28,23 @@ namespace projectTutor
             this.Time = time;
         }
 
-        //get the info from DB
-        public void loadRecord()
+        public static List<Room> getAll()
+        {
+            List<Room> rooms = new List<Room>();
+            DBConnector dbc = new DBConnector();
+
+            List<List<string>> roomList = dbc.getList("Room");
+            foreach (List<string> list in roomList)
+            {
+                Room r = new Room(Int32.Parse(list[0]), list[1], Int32.Parse(list[2]), DateTime.Parse(list[3]));
+                rooms.Add(r);
+            }
+
+            return rooms;
+        }
+
+    //get the info from DB
+    public void loadRecord()
         {
             List<string> l = dbc.get("Room", Id);
 

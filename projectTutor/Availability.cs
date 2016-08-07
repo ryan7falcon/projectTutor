@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace projectTutor
 {
-    class Availability : Record
+    public class Availability : Record
     {
         DBConnector dbc = new DBConnector();
 
@@ -26,6 +26,21 @@ namespace projectTutor
             this.Day = day;
             this.Time = time;
             this.TutorId = tutorId;
+        }
+
+        public static List<Availability> getAll()
+        {
+            List<Availability> avs = new List<Availability>();
+            DBConnector dbc = new DBConnector();
+
+            List<List<string>> avList = dbc.getList("Availability");
+            foreach (List<string> list in avList)
+            {
+                Availability av = new Availability(Int32.Parse(list[0]), Int32.Parse(list[1]), DateTime.Parse(list[2]), Int32.Parse(list[3]));
+                avs.Add(av);
+            }
+
+            return avs;
         }
 
         //get the info from DB

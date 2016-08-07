@@ -44,7 +44,6 @@ namespace projectTutor
             cbTutor.SelectedIndex = 0;
             cbRoom.SelectedIndex = 0;
 
-            //TODO: get a list of Tutors and rooms for the chosen time, show them in combo boxes, update tut and room vars, print the price
         }
 
         

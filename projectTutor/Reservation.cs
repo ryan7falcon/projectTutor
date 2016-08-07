@@ -75,6 +75,21 @@ namespace projectTutor
             this.RoomId = room;
         }
 
+        public static List<Reservation> getAll()
+        {
+            List<Reservation> res = new List<Reservation>();
+            DBConnector dbc = new DBConnector();
+
+            List<List<string>> resList = dbc.getList("Reservation");
+            foreach (List<string> list in resList)
+            {
+                Reservation r = new Reservation(Int32.Parse(list[0]), Int32.Parse(list[1]), DateTime.Parse(list[2]), Int32.Parse(list[3]), Int32.Parse(list[4]));
+                res.Add(r);
+            }
+
+            return res;
+        }
+
         //get the info from DB
         public void loadRecord()
         {
