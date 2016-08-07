@@ -106,7 +106,6 @@ namespace projectTutor
                 List<Tutor> tuts = new List<Tutor>();
                 List<Room> rooms = new List<Room>();
 
-                //TODO: change getList to something that gets relevant info for the chosen date and time
                 string[] dayTime = new string[] { ((int)date.DayOfWeek).ToString(), Reservation.GetStartTime(timeSlot) };
                 string[] dateArr = new string[] { date.ToShortDateString() + " " + Reservation.GetStartTime(timeSlot) };
                 //check availability table for the date and time
@@ -115,7 +114,7 @@ namespace projectTutor
                 if (avs.Count == 0)
                 {
                     MessageBox.Show("No available tutors for " + date.DayOfWeek + " " + dayTime[1]);
-                    //return;
+                    return;
                 }
                 //check room table for the date and time
                 List<Room> rms = Room.getForDayAndTime(dayTime);
@@ -123,7 +122,7 @@ namespace projectTutor
                 if (rms.Count == 0)
                 {
                     MessageBox.Show("No available rooms for " + date.DayOfWeek + " " + dayTime[1]);
-                    //return;
+                    return;
                 }
 
                 //check reservation table for the date, time, tutor and room
@@ -138,17 +137,21 @@ namespace projectTutor
                 }
 
 
-                //discard availability records and room records according to reservations
+                //TODO: discard availability records and room records according to reservations
 
-                //if there is something left, proceed
+
+                //TODO: if there is something left, proceed
+
 
                 //get all tutors
-                tuts = Tutor.getAll();
+                foreach (Availability av in avs)
+                {
+                    Tutor t = new Tutor(av.TutorId);
+                    t.loadRecord();
+                    tuts.Add(t);
+                }
 
-                //get all rooms
-                rooms = Room.getAll();
-
-                makeRegForm = new MakeReservationForm(date, timeSlot, stu, tuts, rooms);
+                makeRegForm = new MakeReservationForm(date, timeSlot, stu, tuts, rms);
                 makeRegForm.FormClosed += MakeRegForm_FormClosed;
                 makeRegForm.Show();
                 
