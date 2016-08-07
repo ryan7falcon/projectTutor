@@ -69,6 +69,7 @@ namespace projectTutor
 
                 //constucts a string like tutorId=@1, tutorName=@2
                 string setString = "";
+
                 int lastIndex = pNames.Length - 1;              
                 for (int i = 0; i < lastIndex; i++)
                 {
@@ -101,7 +102,7 @@ namespace projectTutor
             }
             catch (SqlException ex)
             {
-                Console.WriteLine("Error in getting the list" + ex.Message);
+                Console.WriteLine("Error in getting the listWhere: " + ex.Message);
             }
 
             return l;

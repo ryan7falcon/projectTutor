@@ -108,14 +108,14 @@ namespace projectTutor
 
                 //TODO: change getList to something that gets relevant info for the chosen date and time
                 string[] dayTime = new string[] { ((int)date.DayOfWeek).ToString(), Reservation.GetStartTime(timeSlot) };
-
+                string[] dateArr = new string[] { date.ToShortDateString() + " " + Reservation.GetStartTime(timeSlot) };
                 //check availability table for the date and time
                 List<Availability> avs = Availability.getForDayAndTime(dayTime);
 
                 if (avs.Count == 0)
                 {
                     MessageBox.Show("No available tutors for " + date.DayOfWeek + " " + dayTime[1]);
-                    return;
+                    //return;
                 }
                 //check room table for the date and time
                 List<Room> rms = Room.getForDayAndTime(dayTime);
@@ -123,10 +123,19 @@ namespace projectTutor
                 if (rms.Count == 0)
                 {
                     MessageBox.Show("No available rooms for " + date.DayOfWeek + " " + dayTime[1]);
-                    return;
+                    //return;
                 }
 
                 //check reservation table for the date, time, tutor and room
+                List<Reservation> ress = Reservation.getForDayAndTime(dateArr);
+                if (ress.Count == 0)
+                {
+                    MessageBox.Show("No reservations made for " + dateArr[0]);
+                }
+                else
+                {
+                    MessageBox.Show(ress[0].ToString());
+                }
 
 
                 //discard availability records and room records according to reservations

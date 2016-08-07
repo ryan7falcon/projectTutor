@@ -75,19 +75,35 @@ namespace projectTutor
             this.RoomId = room;
         }
 
-        public static List<Reservation> getAll()
+        //convert a string list to reservation list
+        public static List<Reservation> parseStringList(List<List<string>> strList)
         {
             List<Reservation> res = new List<Reservation>();
-            DBConnector dbc = new DBConnector();
 
-            List<List<string>> resList = dbc.getList("Reservation");
-            foreach (List<string> list in resList)
+            foreach (List<string> list in strList)
             {
                 Reservation r = new Reservation(Int32.Parse(list[0]), Int32.Parse(list[1]), DateTime.Parse(list[2]), Int32.Parse(list[3]), Int32.Parse(list[4]));
                 res.Add(r);
             }
-
             return res;
+        }
+
+        //get all records from the database
+        public static List<Reservation> getAll()
+        {
+           
+            DBConnector dbc = new DBConnector();
+            List<List<string>> resList = dbc.getList("Reservation");         
+            return parseStringList(resList);
+        }
+
+        public static List<Reservation> getForDayAndTime(string[] parameters)
+        {
+            DBConnector dbc = new DBConnector();
+            string[] paramNames = new string[1];
+            paramNames[0] = "TimeSlot";
+            List<List<string>> list = dbc.getListWhere("Reservation", paramNames, parameters);
+            return parseStringList(list); ;
         }
 
         //get the info from DB
