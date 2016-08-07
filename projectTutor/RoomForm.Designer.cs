@@ -38,11 +38,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dayBox = new System.Windows.Forms.ComboBox();
-            this.timeBox = new System.Windows.Forms.ComboBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.savedButton = new System.Windows.Forms.Button();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -133,17 +133,6 @@
             this.dayBox.Size = new System.Drawing.Size(164, 24);
             this.dayBox.TabIndex = 5;
             // 
-            // timeBox
-            // 
-            this.timeBox.DisplayMember = "9:00 AM, 10:00 AM,";
-            this.timeBox.FormattingEnabled = true;
-            this.timeBox.Location = new System.Drawing.Point(41, 256);
-            this.timeBox.Margin = new System.Windows.Forms.Padding(4);
-            this.timeBox.Name = "timeBox";
-            this.timeBox.Size = new System.Drawing.Size(164, 24);
-            this.timeBox.TabIndex = 7;
-            this.timeBox.ValueMember = "9:00 AM, 10:00 AM,";
-            // 
             // saveButton
             // 
             this.saveButton.Location = new System.Drawing.Point(0, 0);
@@ -180,16 +169,27 @@
             this.savedButton.UseVisualStyleBackColor = true;
             this.savedButton.Click += new System.EventHandler(this.savedButton_Click);
             // 
+            // dateTimePicker
+            // 
+            this.dateTimePicker.CustomFormat = "hh:mm tt";
+            this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker.Location = new System.Drawing.Point(39, 257);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.ShowUpDown = true;
+            this.dateTimePicker.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePicker.TabIndex = 12;
+            this.dateTimePicker.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
             // RoomForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(907, 582);
+            this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.savedButton);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.saveButton);
-            this.Controls.Add(this.timeBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dayBox);
             this.Controls.Add(this.label2);
@@ -219,10 +219,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox dayBox;
-        private System.Windows.Forms.ComboBox timeBox;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Button savedButton;
+        private System.Windows.Forms.DateTimePicker dateTimePicker;
     }
 }

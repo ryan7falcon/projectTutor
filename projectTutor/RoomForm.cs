@@ -48,20 +48,6 @@ namespace projectTutor
                 days[3], days[4]
             });
 
-
-            //Add items in the combobox
-            timeBox.Items.AddRange(new Object[] {
-                "8:00 AM",
-                "10:00 AM",
-                "11:00 AM",
-                "12:00 PM",
-                "1:00 PM",
-                "2:00 PM",
-                "3:00 PM",
-                "4:00 PM",
-                "5:00 PM"
-            });
-
         }
 
         private void savedButton_Click(object sender, EventArgs e)
@@ -69,7 +55,7 @@ namespace projectTutor
             //Get all the inputs from user
             String aRoom = roomBox.Text;
             String day = dayBox.Text;
-            String time = timeBox.Text;
+            DateTime time = DateTime.Parse(dateTimePicker.Text);
 
             
             //Check the last id of the user in the database and add 1
@@ -77,7 +63,7 @@ namespace projectTutor
 
 
             //Create new room object then pass to database
-            room = new Room(id, aRoom, convertDay(day), convertTime(time));
+            room = new Room(id, aRoom, convertDay(day), time);
 
             dbc.insert("Room", room);
             MessageBox.Show("Added room");
@@ -103,7 +89,7 @@ namespace projectTutor
             return day;
         }
 
-        private DateTime convertTime(String t)
+       /* private DateTime convertTime(String t)
         {
             //Find time
             Regex regexTime = new Regex(@"^\d+");
@@ -126,8 +112,13 @@ namespace projectTutor
                 }
             }
            
-        }
-    }
+        }*/
 
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+ 
+            MessageBox.Show(dateTimePicker.Value.TimeOfDay.ToString());
+        }
     
+    }
 }
