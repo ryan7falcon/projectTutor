@@ -251,5 +251,25 @@ namespace projectTutor
         {
             TutorID.Value = TutorID.Maximum;
         }
+
+        private void listView1_Leave(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            listView2.Items.Clear();
+            if (listView1.SelectedIndices.Count == 0) {
+                foreach (DataRow row in ds.Tables["Availability"].Rows)
+                {
+                    ListViewItem item = new ListViewItem(row["Id"].ToString());
+                    item.SubItems.Add(row["Day"].ToString());
+                    item.SubItems.Add(row["Time"].ToString());
+                    item.SubItems.Add(row["TutorId"].ToString());
+                    listView2.Items.Add(item);
+                }
+            }
+        }
     }
 }
