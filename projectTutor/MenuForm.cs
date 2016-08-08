@@ -13,7 +13,10 @@ namespace projectTutor
     public partial class MenuForm : Form
     {
         ReservationForm regForm;
+        StudentForm studentForm;
+        RoomForm roomForm;
         TutorForm tutorForm;
+        
 
         public MenuForm()
         {
@@ -45,13 +48,50 @@ namespace projectTutor
             regForm = null;
         }
 
+        private void studentMainMenuItem_Click(object sender, EventArgs e)
+        {
+            if (studentForm == null)
+            {
+                studentForm = new StudentForm();
+                studentForm.FormClosed += StudentForm_FormClosed;
+                studentForm.Show();
+            }
+            else
+            {
+                studentForm.Activate();
+            }
+        }
+
+        private void StudentForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            studentForm = null;
+        }
+
+        private void roomMainMenuItem_Click(object sender, EventArgs e)
+        {
+            if (roomForm == null)
+            {
+                roomForm = new RoomForm();
+                roomForm.FormClosed += RoomForm_FormClosed;
+                roomForm.Show();
+            }
+            else
+            {
+                roomForm.Activate();
+            }
+        }
+
+        private void RoomForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            roomForm = null;
+        }
+
         private void tutorMainMenuItem_Click(object sender, EventArgs e)
         {
             if (tutorForm == null)
             {
                 tutorForm = new TutorForm();
-                //regForm.MdiParent = this;
-                tutorForm.FormClosed += tutorForm_FormClosed;
+                tutorForm.FormClosed += TutorForm_FormClosed;
                 tutorForm.Show();
             }
             else
@@ -59,9 +99,11 @@ namespace projectTutor
                 tutorForm.Activate();
             }
         }
-        private void tutorForm_FormClosed(object sender, FormClosedEventArgs e)
+
+        private void TutorForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             tutorForm = null;
         }
+
     }
 }

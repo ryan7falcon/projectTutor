@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace projectTutor
 {
-    class Tutor : Record
+    public class Tutor : Record
     {
         DBConnector dbc = new DBConnector();
 
@@ -30,6 +30,40 @@ namespace projectTutor
             this.HourlyRate = rate;
         }
 
+        public static List<Tutor> getAll()
+        {
+            List<Tutor> tuts = new List<Tutor>();
+            DBConnector dbc = new DBConnector();
+
+            List<List<string>> tutorList = dbc.getList("Tutor");
+            foreach (List<string> list in tutorList)
+            {
+                Tutor tut = new Tutor(Int32.Parse(list[0]), list[1], list[2], Int32.Parse(list[3]), Double.Parse(list[4]));
+                tuts.Add(tut);
+            }
+
+            return tuts;
+        }
+
+        public static string getLevelName(int level)
+        {
+            switch (level)
+            {
+                case 0:
+                    return "Beginner";
+                case 1:
+                    return "Intermediate";
+                case 2:
+                    return "Advanced";
+                case 3:
+                    return "Master";
+                case 4:
+                    return "God";
+                default:
+                    return "Unknown";
+            }
+        }
+
         //get the info from DB
         public void loadRecord()
         {
@@ -44,7 +78,7 @@ namespace projectTutor
         //used when updating and inserting records in DB
         override public string[] getParameters()
         {
-            string[] s = new string[9];
+            string[] s = new string[5];
 
             s[0] = Id.ToString();
             s[1] = Name;
@@ -58,7 +92,7 @@ namespace projectTutor
         //used when updating and inserting records in DB
         override public string[] getParameterNames()
         {
-            string[] s = new string[9];
+            string[] s = new string[5];
 
             //those are name of the fields in the database
             s[0] = "Id";

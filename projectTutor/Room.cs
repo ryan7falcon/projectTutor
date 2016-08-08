@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace projectTutor
 {
-    class Room : Record
+    public class Room : Record
     {
         DBConnector dbc = new DBConnector();
 
@@ -28,6 +28,37 @@ namespace projectTutor
             this.Time = time;
         }
 
+        public static List<Room> getAll()
+        {
+           
+            DBConnector dbc = new DBConnector();
+            List<List<string>> roomList = dbc.getList("Room");
+            return parseStringList(roomList);
+        }
+
+        public static List<Room> parseStringList(List<List<string>> strList)
+        {
+            List<Room> rooms = new List<Room>();
+
+            foreach (List<string> list in strList)
+            {
+                Room r = new Room(Int32.Parse(list[0]), list[1], Int32.Parse(list[2]), DateTime.Parse(list[3]));
+                rooms.Add(r);
+            }
+
+            return rooms;
+        }
+
+        public static List<Room> getForDayAndTime(string[] parameters)
+        {
+            DBConnector dbc = new DBConnector();
+            string[] paramNames = new string[2];
+            paramNames[0] = "Day";
+            paramNames[1] = "Time";
+            List<List<string>> list = dbc.getListWhere("Room", paramNames, parameters);
+            return parseStringList(list); ;
+        }
+
         //get the info from DB
         public void loadRecord()
         {
@@ -41,7 +72,7 @@ namespace projectTutor
         //used when updating and inserting records in DB
         override public string[] getParameters()
         {
-            string[] s = new string[9];
+            string[] s = new string[4];
 
             s[0] = Id.ToString();
             s[1] = Name;
@@ -54,7 +85,7 @@ namespace projectTutor
         //used when updating and inserting records in DB
         override public string[] getParameterNames()
         {
-            string[] s = new string[9];
+            string[] s = new string[4];
 
             //those are name of the fields in the database
             s[0] = "Id";
