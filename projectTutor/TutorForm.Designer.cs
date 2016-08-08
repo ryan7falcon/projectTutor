@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "TutorForm";
-
             this.Save = new System.Windows.Forms.Button();
             this.UniqueID = new System.Windows.Forms.Button();
             this.TutorIdL = new System.Windows.Forms.Label();
@@ -92,6 +89,7 @@
             this.UniqueID.TabIndex = 1;
             this.UniqueID.Text = "UniqueId";
             this.UniqueID.UseVisualStyleBackColor = true;
+            this.UniqueID.Click += new System.EventHandler(this.UniqueID_Click);
             // 
             // TutorIdL
             // 
@@ -178,16 +176,41 @@
             // level
             // 
             this.level.Location = new System.Drawing.Point(75, 132);
+            this.level.Maximum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.level.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.level.Name = "level";
             this.level.Size = new System.Drawing.Size(120, 20);
             this.level.TabIndex = 12;
+            this.level.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // TutorID
             // 
             this.TutorID.Location = new System.Drawing.Point(75, 16);
+            this.TutorID.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.TutorID.Name = "TutorID";
             this.TutorID.Size = new System.Drawing.Size(120, 20);
             this.TutorID.TabIndex = 13;
+            this.TutorID.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // TutorName
             // 
@@ -200,9 +223,24 @@
             // Day
             // 
             this.Day.Location = new System.Drawing.Point(75, 282);
+            this.Day.Maximum = new decimal(new int[] {
+            7,
+            0,
+            0,
+            0});
+            this.Day.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.Day.Name = "Day";
             this.Day.Size = new System.Drawing.Size(120, 20);
             this.Day.TabIndex = 15;
+            this.Day.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // Time
             // 
@@ -239,9 +277,12 @@
             this.HourlyRate});
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(338, 12);
+            this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listView1.Location = new System.Drawing.Point(300, 13);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(368, 385);
+            this.listView1.Scrollable = false;
+            this.listView1.Size = new System.Drawing.Size(429, 385);
             this.listView1.TabIndex = 19;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -251,6 +292,7 @@
             // TutorIDC
             // 
             this.TutorIDC.Text = "TutorID";
+            this.TutorIDC.Width = 50;
             // 
             // TutorNameC
             // 
@@ -263,10 +305,12 @@
             // LevelC
             // 
             this.LevelC.Text = "Level";
+            this.LevelC.Width = 50;
             // 
             // HourlyRate
             // 
             this.HourlyRate.Text = "Rate";
+            this.HourlyRate.Width = 50;
             // 
             // listView2
             // 
@@ -277,9 +321,11 @@
             this.TutorIDR});
             this.listView2.FullRowSelect = true;
             this.listView2.GridLines = true;
-            this.listView2.Location = new System.Drawing.Point(722, 13);
+            this.listView2.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listView2.Location = new System.Drawing.Point(766, 12);
+            this.listView2.MultiSelect = false;
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(360, 384);
+            this.listView2.Size = new System.Drawing.Size(316, 385);
             this.listView2.TabIndex = 20;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -334,11 +380,21 @@
             // AvailTutorID
             // 
             this.AvailTutorID.Location = new System.Drawing.Point(75, 362);
+            this.AvailTutorID.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.AvailTutorID.Name = "AvailTutorID";
             this.AvailTutorID.Size = new System.Drawing.Size(120, 20);
             this.AvailTutorID.TabIndex = 25;
+            this.AvailTutorID.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
-            // Tutor
+            // TutorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -367,7 +423,7 @@
             this.Controls.Add(this.UniqueID);
             this.Controls.Add(this.Save);
             this.Name = "TutorForm";
-
+            this.Text = "TutorForm";
             this.Load += new System.EventHandler(this.Tutor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.level)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TutorID)).EndInit();
