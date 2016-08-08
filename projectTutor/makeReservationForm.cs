@@ -46,7 +46,12 @@ namespace projectTutor
 
         }
 
-        
+        public event EventHandler ReservationMade;
+
+        protected virtual void OnReservationMade(EventArgs e)
+        {
+            ReservationMade?.Invoke(this, e);
+        }
 
         private void btnSubmitReservation_Click(object sender, EventArgs e)
         {
@@ -59,7 +64,8 @@ namespace projectTutor
             //add reservation to the database
             Reservation res = new Reservation(dbc.getLastId("Reservation") + 1, stu.Id, date.Date +  TimeSpan.Parse(Reservation.GetStartTime(timeSlot)), selectedTut.Id, selectedRoom.Id);
             dbc.insert("Reservation", res);
-                   
+
+            OnReservationMade(EventArgs.Empty);
             this.Close();
         }
 
