@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 
 namespace projectTutor
@@ -38,7 +39,7 @@ namespace projectTutor
         {
 
         }
-
+        // on the loading of the nwe form fills the ds tables with values form the db
         private void Tutor_Load(object sender, EventArgs e)
         {
             DBConnector dbc = new DBConnector();
@@ -52,31 +53,18 @@ namespace projectTutor
                 da.Fill(ds, "Availability");
 
             }
-            DataTable tutorT = ds.Tables["Tutor"];
-            foreach (DataRow row in ds.Tables["Tutor"].Rows)
-            {
-                ListViewItem item = new ListViewItem(row["Id"].ToString());
-                item.SubItems.Add(row["name"].ToString());
-                item.SubItems.Add(row["subjects"].ToString());
-                item.SubItems.Add(row["level"].ToString());
-                item.SubItems.Add(row["hourlyRate"].ToString());
-                listView1.Items.Add(item);
-            }
-            foreach (DataRow row in ds.Tables["Availability"].Rows)
-            {
-                ListViewItem item = new ListViewItem(row["Id"].ToString());
-                item.SubItems.Add(row["Day"].ToString());
-                item.SubItems.Add(row["Time"].ToString());
-                item.SubItems.Add(row["TutorId"].ToString());
-                listView2.Items.Add(item);
-            }
+            TutorID.Maximum = ds.Tables["Tutor"].Rows.Count + 1;
+            AvailTutorID.Maximum = ds.Tables["Tutor"].Rows.Count;
+            loadListView();
+
 
         }
 
+        //Validates the tutorname textbox to ensure only spaces  and alpha characters 
         private void TutorName_Validating(object sender, CancelEventArgs e)
         {
             string errorMsg;
-            string regex = "^[a-zA-Z0-9_ ]*$";
+            string regex = "^[a-zA-Z_ ]*$";
             Match match = Regex.Match(TutorName.Text, regex, RegexOptions.IgnoreCase);
             if (!match.Success)
             {
@@ -119,7 +107,7 @@ namespace projectTutor
 
 
         }
-
+        //populates the form control related to the list view item
         private void listView1_Click(object sender, EventArgs e)
         {
 
@@ -144,7 +132,7 @@ namespace projectTutor
         {
 
         }
-
+        //populates the form control related to the list view item
         private void listView2_Click(object sender, EventArgs e)
         {
             AvailID.Text = listView2.SelectedItems[0].SubItems[0].Text;
@@ -152,10 +140,136 @@ namespace projectTutor
             Time.Text = listView2.SelectedItems[0].SubItems[2].Text;
             AvailTutorID.Value = Convert.ToInt32(listView2.SelectedItems[0].SubItems[3].Text);
         }
-
+        //save checks to see if the an update has happened or a new record insert and updates the database
         private void Save_Click(object sender, EventArgs e)
         {
 
+            try
+            {
+                DBConnector dbc = new DBConnector();
+                SqlConnection con = dbc.getConnection();
+                DataRow[] selectedrow = ds.Tables["Tutor"].Select("Id = '" + TutorID.Value.ToString() + "'");
+
+                if (selectedrow.Length == 1)
+
+                {
+                    if (TutorName.Text!=null &&Subjects.Text!=null && rate.MaskCompleted ) {
+                        selectedrow[0]["Id"] = TutorID.Value.ToString();
+                        selectedrow[0]["name"] = TutorName.Text;
+                        selectedrow[0]["subjects"] = Subjects.Text;
+                        selectedrow[0]["level"] = level.Value.ToString();
+                        selectedrow[0]["hourlyRate"] = Convert.ToDecimal(rate.Text);
+                    }
+                }
+                else
+                {
+                    if (TutorName.Text != null && Subjects.Text != null && rate.MaskCompleted)
+                    {
+                        DataRow toInsert = ds.Tables["Tutor"].NewRow();
+                        toInsert["Id"] = TutorID.Value.ToString();
+                        toInsert["name"] = TutorName.Text;
+                        toInsert["subjects"] = Subjects.Text;
+                        toInsert["level"] = level.Value.ToString();
+                        toInsert["hourlyRate"] = Convert.ToDecimal(rate.Text);
+                        ds.Tables["Tutor"].Rows.Add(toInsert);
+                    }
+                }
+
+
+                if (AvailID.MaskCompleted) {
+                    DataRow[] selectedAvilrow = ds.Tables["Availability"].Select("Id = '" + AvailID.Text + "'");
+
+                    if (selectedAvilrow.Length == 1)
+                    {
+                        if (Time.MaskCompleted) {
+                            selectedAvilrow[0]["Id"] = AvailID.Text;
+                            selectedAvilrow[0]["Day"] = Day.Value.ToString();
+                            selectedAvilrow[0]["Time"] = Time.Text;
+                            selectedAvilrow[0]["TutorId"] = AvailTutorID.Value.ToString();
+                        }
+                    }
+                    else
+                    {
+                        if (Time.MaskCompleted) {
+                            DataRow toInsert = ds.Tables["Availability"].NewRow();
+                            toInsert["Id"] = AvailID.Text;
+                            toInsert["Day"] = Day.Value.ToString();
+                            toInsert["Time"] = Time.Text;
+                            toInsert["TutorId"] = AvailTutorID.Value.ToString();
+                            ds.Tables["Availability"].Rows.Add(toInsert);
+                            
+                        }
+                    }
+                }
+               
+                using (con) {
+                    SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Tutor", con);
+                    SqlCommandBuilder cmdBuilder = new SqlCommandBuilder(da);
+                    da.Update(ds, "Tutor");
+                    da = new SqlDataAdapter("SELECT * FROM Availability", con);
+                    cmdBuilder = new SqlCommandBuilder(da);
+                    da.Update(ds, "Availability");
+
+
+                }
+                    loadListView();
+                TutorID.Maximum = ds.Tables["Tutor"].Rows.Count + 1;
+                AvailTutorID.Maximum = ds.Tables["Tutor"].Rows.Count;
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
+
+
+        }
+
+        // using the ds loads the the listview with values
+        public void loadListView() {
+            listView1.Items.Clear();
+            listView2.Items.Clear();
+            foreach (DataRow row in ds.Tables["Tutor"].Rows)
+            {
+                ListViewItem item = new ListViewItem(row["Id"].ToString());
+                item.SubItems.Add(row["name"].ToString());
+                item.SubItems.Add(row["subjects"].ToString());
+                item.SubItems.Add(row["level"].ToString());
+                item.SubItems.Add(row["hourlyRate"].ToString());
+                listView1.Items.Add(item);
+            }
+            foreach (DataRow row in ds.Tables["Availability"].Rows)
+            {
+                ListViewItem item = new ListViewItem(row["Id"].ToString());
+                item.SubItems.Add(row["Day"].ToString());
+                item.SubItems.Add(row["Time"].ToString());
+                item.SubItems.Add(row["TutorId"].ToString());
+                listView2.Items.Add(item);
+            }
+
+        }
+
+        private void UniqueID_Click(object sender, EventArgs e)
+        {
+            TutorID.Value = TutorID.Maximum;
+        }
+
+        private void listView1_Leave(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            listView2.Items.Clear();
+            if (listView1.SelectedIndices.Count == 0) {
+                foreach (DataRow row in ds.Tables["Availability"].Rows)
+                {
+                    ListViewItem item = new ListViewItem(row["Id"].ToString());
+                    item.SubItems.Add(row["Day"].ToString());
+                    item.SubItems.Add(row["Time"].ToString());
+                    item.SubItems.Add(row["TutorId"].ToString());
+                    listView2.Items.Add(item);
+                }
+            }
         }
     }
 }
