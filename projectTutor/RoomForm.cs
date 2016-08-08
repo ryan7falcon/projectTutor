@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.ListView;
 
 namespace projectTutor
 {
@@ -15,6 +16,7 @@ namespace projectTutor
     {
         DBConnector dbc;
         Room room;
+        int roomId;
 
         String[] days = {
                 "Monday",
@@ -31,6 +33,7 @@ namespace projectTutor
 
             dbc = new DBConnector();
             loadInputs();
+            getRooms();
         }
 
         private void loadInputs()
@@ -57,7 +60,6 @@ namespace projectTutor
             String day = dayBox.Text;
             DateTime time = DateTime.Parse(dateTimePicker.Text);
 
-            
             //Check the last id of the user in the database and add 1
             int id = dbc.getLastId("Room") + 1;
 
@@ -89,36 +91,99 @@ namespace projectTutor
             return day;
         }
 
-       /* private DateTime convertTime(String t)
-        {
-            //Find time
-            Regex regexTime = new Regex(@"^\d+");
-            Match matchTime = regexTime.Match(t);
-            //Find am or pm
-            Regex regexDay = new Regex(@"^?[AP]M$");
-            Match matchDay = regexDay.Match(t);
-
-            if (matchDay.ToString() == "AM")
-            {
-                //Convert matchTime into datetime format
-                return DateTime.Parse(matchTime + ":00");
-            }
-            else
-            {
-                //Will have to refactor this
-                if (matchTime.ToString() == "1")
-                {
-
-                }
-            }
-           
-        }*/
+     
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
  
             MessageBox.Show(dateTimePicker.Value.TimeOfDay.ToString());
         }
-    
+
+        private void roomListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectedListViewItemCollection roomItems = roomListView.SelectedItems;
+
+            if (roomItems.Count > 0)
+            {
+                //Patch for now//
+                //Find the room id
+                Regex regex = new Regex(@"^\d+");
+                Match match = regex.Match(roomItems[0].Text);
+
+                //Select the id number of the selected student
+                int index = Int32.Parse(match.ToString());
+
+                //Get the selected Student from the database student
+                room = getRoom(index);
+
+                fillForm();
+
+            }
+
+
+        }
+
+        //Load a specific student from the database students
+        private Room getRoom(int index)
+        {
+            List<string> aRoom = dbc.get("Room", index);
+            return new Room(Int32.Parse(aRoom[0]), aRoom[1],
+                             Int32.Parse(aRoom[2]), DateTime.Parse(aRoom[3]));
+        }
+
+        //Load all the current students in the database Students
+        private void getRooms()
+        {
+            roomListView.Clear();
+
+            //Get the current students in the database
+            List<List<string>> roomsList = dbc.getList("Room");
+            //Loop through each to get a student in studentList
+            foreach (List<string> room in roomsList)
+            {
+                //Pass each student to class Student
+                Room aRoom = new Room(Int32.Parse(room[0]), room[1],
+                             Int32.Parse(room[2]), DateTime.Parse(room[3]));
+
+
+                //Pass student object to List object
+                /*Need to refactor*/
+                ListViewItem roomItem = new ListViewItem(new[]{
+                    aRoom.Id.ToString() + " " + aRoom.Name + " " +
+                    aRoom.Day + " " + aRoom.Time.ToString()
+                });
+                //Append to studentLisView to display
+                roomListView.Items.Add(roomItem);
+            }
+        }
+
+        private void fillForm()
+        {
+            roomId = room.Id;
+            roomBox.Text = room.Name;
+            dayBox.Text = room.Day.ToString();
+            dateTimePicker.Text = room.Time.ToString();
+        }
+
+        private void refreshForm()
+        {
+            roomId = 0;
+            roomBox.Text = "";
+            dayBox.Text = "";
+            dateTimePicker.Text = "";
+
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            //fillForm.studentId is extracted
+            dbc.delete("Room", roomId);
+
+            MessageBox.Show("Deleted Room");
+
+            //Update students list
+            getRooms();
+            refreshForm();
+        }
     }
 }

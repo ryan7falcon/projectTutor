@@ -39,8 +39,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dayBox = new System.Windows.Forms.ComboBox();
             this.saveButton = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.roomListView = new System.Windows.Forms.ListView();
             this.savedButton = new System.Windows.Forms.Button();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.menuStrip1.SuspendLayout();
@@ -140,27 +140,30 @@
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 10;
             // 
-            // button2
+            // deleteButton
             // 
-            this.button2.Location = new System.Drawing.Point(167, 375);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 28);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "DELETE";
-            this.button2.UseVisualStyleBackColor = true;
+            this.deleteButton.Location = new System.Drawing.Point(165, 463);
+            this.deleteButton.Margin = new System.Windows.Forms.Padding(4);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(100, 28);
+            this.deleteButton.TabIndex = 9;
+            this.deleteButton.Text = "DELETE";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
-            // listView1
+            // roomListView
             // 
-            this.listView1.Location = new System.Drawing.Point(429, 69);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(356, 308);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.roomListView.Location = new System.Drawing.Point(311, 69);
+            this.roomListView.Name = "roomListView";
+            this.roomListView.Size = new System.Drawing.Size(525, 422);
+            this.roomListView.TabIndex = 0;
+            this.roomListView.UseCompatibleStateImageBehavior = false;
+            this.roomListView.View = System.Windows.Forms.View.List;
+            this.roomListView.SelectedIndexChanged += new System.EventHandler(this.roomListView_SelectedIndexChanged);
             // 
             // savedButton
             // 
-            this.savedButton.Location = new System.Drawing.Point(42, 375);
+            this.savedButton.Location = new System.Drawing.Point(39, 463);
             this.savedButton.Margin = new System.Windows.Forms.Padding(4);
             this.savedButton.Name = "savedButton";
             this.savedButton.Size = new System.Drawing.Size(100, 28);
@@ -187,8 +190,8 @@
             this.ClientSize = new System.Drawing.Size(907, 582);
             this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.savedButton);
-            this.Controls.Add(this.listView1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.roomListView);
+            this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dayBox);
@@ -220,8 +223,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox dayBox;
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.ListView roomListView;
         private System.Windows.Forms.Button savedButton;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
     }
