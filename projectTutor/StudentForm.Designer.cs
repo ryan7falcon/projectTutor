@@ -41,13 +41,13 @@
             this.saveStudenFormButton = new System.Windows.Forms.Button();
             this.deleteStudentFormButton = new System.Windows.Forms.Button();
             this.startDateFormMaskedBox = new System.Windows.Forms.MaskedTextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.studentListView = new System.Windows.Forms.ListView();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.studentToolStripMenuItem,
             this.tutorToolStripMenuItem,
@@ -55,81 +55,89 @@
             this.reservedToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(686, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(915, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // studentToolStripMenuItem
             // 
             this.studentToolStripMenuItem.Name = "studentToolStripMenuItem";
-            this.studentToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.studentToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
             this.studentToolStripMenuItem.Text = "Student";
             // 
             // tutorToolStripMenuItem
             // 
             this.tutorToolStripMenuItem.Name = "tutorToolStripMenuItem";
-            this.tutorToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.tutorToolStripMenuItem.Size = new System.Drawing.Size(56, 24);
             this.tutorToolStripMenuItem.Text = "Tutor";
             // 
             // roomToolStripMenuItem
             // 
             this.roomToolStripMenuItem.Name = "roomToolStripMenuItem";
-            this.roomToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
+            this.roomToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
             this.roomToolStripMenuItem.Text = "Room";
             // 
             // reservedToolStripMenuItem
             // 
             this.reservedToolStripMenuItem.Name = "reservedToolStripMenuItem";
-            this.reservedToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.reservedToolStripMenuItem.Size = new System.Drawing.Size(81, 24);
             this.reservedToolStripMenuItem.Text = "Reserved";
             // 
             // nameStudentFormLabel
             // 
             this.nameStudentFormLabel.AutoSize = true;
-            this.nameStudentFormLabel.Location = new System.Drawing.Point(24, 50);
+            this.nameStudentFormLabel.Location = new System.Drawing.Point(32, 62);
+            this.nameStudentFormLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.nameStudentFormLabel.Name = "nameStudentFormLabel";
-            this.nameStudentFormLabel.Size = new System.Drawing.Size(35, 13);
+            this.nameStudentFormLabel.Size = new System.Drawing.Size(45, 17);
             this.nameStudentFormLabel.TabIndex = 1;
             this.nameStudentFormLabel.Text = "Name";
             // 
             // programStudentFormLabel
             // 
             this.programStudentFormLabel.AutoSize = true;
-            this.programStudentFormLabel.Location = new System.Drawing.Point(25, 120);
+            this.programStudentFormLabel.Location = new System.Drawing.Point(33, 148);
+            this.programStudentFormLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.programStudentFormLabel.Name = "programStudentFormLabel";
-            this.programStudentFormLabel.Size = new System.Drawing.Size(46, 13);
+            this.programStudentFormLabel.Size = new System.Drawing.Size(62, 17);
             this.programStudentFormLabel.TabIndex = 2;
             this.programStudentFormLabel.Text = "Program";
             // 
             // startDateStudentFormLabel
             // 
             this.startDateStudentFormLabel.AutoSize = true;
-            this.startDateStudentFormLabel.Location = new System.Drawing.Point(25, 193);
+            this.startDateStudentFormLabel.Location = new System.Drawing.Point(33, 238);
+            this.startDateStudentFormLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.startDateStudentFormLabel.Name = "startDateStudentFormLabel";
-            this.startDateStudentFormLabel.Size = new System.Drawing.Size(55, 13);
+            this.startDateStudentFormLabel.Size = new System.Drawing.Size(72, 17);
             this.startDateStudentFormLabel.TabIndex = 3;
             this.startDateStudentFormLabel.Text = "Start Date";
             // 
             // nameStudentFormMaskedBox
             // 
             this.nameStudentFormMaskedBox.BeepOnError = true;
-            this.nameStudentFormMaskedBox.Location = new System.Drawing.Point(28, 66);
+            this.nameStudentFormMaskedBox.Location = new System.Drawing.Point(37, 81);
+            this.nameStudentFormMaskedBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.nameStudentFormMaskedBox.Name = "nameStudentFormMaskedBox";
-            this.nameStudentFormMaskedBox.Size = new System.Drawing.Size(100, 20);
+            this.nameStudentFormMaskedBox.Size = new System.Drawing.Size(132, 22);
             this.nameStudentFormMaskedBox.TabIndex = 4;
+            this.nameStudentFormMaskedBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.nameStudentFormMaskedBox_MaskInputRejected);
             // 
             // programStudentFormMaskedBox
             // 
-            this.programStudentFormMaskedBox.Location = new System.Drawing.Point(28, 136);
+            this.programStudentFormMaskedBox.Location = new System.Drawing.Point(37, 167);
+            this.programStudentFormMaskedBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.programStudentFormMaskedBox.Name = "programStudentFormMaskedBox";
-            this.programStudentFormMaskedBox.Size = new System.Drawing.Size(100, 20);
+            this.programStudentFormMaskedBox.Size = new System.Drawing.Size(132, 22);
             this.programStudentFormMaskedBox.TabIndex = 5;
             // 
             // saveStudenFormButton
             // 
-            this.saveStudenFormButton.Location = new System.Drawing.Point(28, 412);
+            this.saveStudenFormButton.Location = new System.Drawing.Point(37, 507);
+            this.saveStudenFormButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.saveStudenFormButton.Name = "saveStudenFormButton";
-            this.saveStudenFormButton.Size = new System.Drawing.Size(75, 23);
+            this.saveStudenFormButton.Size = new System.Drawing.Size(100, 28);
             this.saveStudenFormButton.TabIndex = 8;
             this.saveStudenFormButton.Text = "SAVE";
             this.saveStudenFormButton.UseVisualStyleBackColor = true;
@@ -137,35 +145,41 @@
             // 
             // deleteStudentFormButton
             // 
-            this.deleteStudentFormButton.Location = new System.Drawing.Point(159, 412);
+            this.deleteStudentFormButton.Location = new System.Drawing.Point(212, 507);
+            this.deleteStudentFormButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.deleteStudentFormButton.Name = "deleteStudentFormButton";
-            this.deleteStudentFormButton.Size = new System.Drawing.Size(75, 23);
+            this.deleteStudentFormButton.Size = new System.Drawing.Size(100, 28);
             this.deleteStudentFormButton.TabIndex = 9;
             this.deleteStudentFormButton.Text = "DELETE";
             this.deleteStudentFormButton.UseVisualStyleBackColor = true;
+            this.deleteStudentFormButton.Click += new System.EventHandler(this.deleteStudentFormButton_Click);
             // 
             // startDateFormMaskedBox
             // 
-            this.startDateFormMaskedBox.Location = new System.Drawing.Point(28, 209);
+            this.startDateFormMaskedBox.Location = new System.Drawing.Point(37, 257);
+            this.startDateFormMaskedBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.startDateFormMaskedBox.Name = "startDateFormMaskedBox";
-            this.startDateFormMaskedBox.Size = new System.Drawing.Size(100, 20);
+            this.startDateFormMaskedBox.Size = new System.Drawing.Size(132, 22);
             this.startDateFormMaskedBox.TabIndex = 10;
             // 
-            // dataGridView1
+            // studentListView
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(343, 50);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(268, 282);
-            this.dataGridView1.TabIndex = 11;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.studentListView.FullRowSelect = true;
+            this.studentListView.Location = new System.Drawing.Point(355, 81);
+            this.studentListView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.studentListView.Name = "studentListView";
+            this.studentListView.Size = new System.Drawing.Size(476, 315);
+            this.studentListView.TabIndex = 0;
+            this.studentListView.UseCompatibleStateImageBehavior = false;
+            this.studentListView.View = System.Windows.Forms.View.List;
+            this.studentListView.SelectedIndexChanged += new System.EventHandler(this.studentListView_SelectedIndexChanged);
             // 
             // StudentForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(686, 467);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(915, 575);
+            this.Controls.Add(this.studentListView);
             this.Controls.Add(this.startDateFormMaskedBox);
             this.Controls.Add(this.deleteStudentFormButton);
             this.Controls.Add(this.saveStudenFormButton);
@@ -176,12 +190,12 @@
             this.Controls.Add(this.nameStudentFormLabel);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "StudentForm";
             this.Text = "StudentForm";
             this.Load += new System.EventHandler(this.StudentForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -202,6 +216,6 @@
         private System.Windows.Forms.Button saveStudenFormButton;
         private System.Windows.Forms.Button deleteStudentFormButton;
         private System.Windows.Forms.MaskedTextBox startDateFormMaskedBox;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ListView studentListView;
     }
 }

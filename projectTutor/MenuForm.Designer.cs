@@ -62,13 +62,7 @@
             this.studentMainMenuItem.Text = "Student";
             this.studentMainMenuItem.Click += new System.EventHandler(this.studentMainMenuItem_Click);
             // 
-            // tutorMainMenuItem
-            // 
-            this.tutorMainMenuItem.Name = "tutorMainMenuItem";
-            this.tutorMainMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.tutorMainMenuItem.Text = "Tutor";
-            this.tutorMainMenuItem.Click += new System.EventHandler(this.tutorMainMenuItem_Click);
-            // 
+            
             // roomMainMenuItem
             // 
             this.roomMainMenuItem.Name = "roomMainMenuItem";

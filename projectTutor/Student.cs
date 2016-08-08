@@ -63,7 +63,6 @@ namespace projectTutor
             s[2] = Program;
             s[3] = StartYear.ToString();
 
-            Console.WriteLine(s);
             return s;
         }
 
