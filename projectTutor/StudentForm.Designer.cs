@@ -28,11 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.studentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tutorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.roomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reservedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nameStudentFormLabel = new System.Windows.Forms.Label();
             this.programStudentFormLabel = new System.Windows.Forms.Label();
             this.startDateStudentFormLabel = new System.Windows.Forms.Label();
@@ -42,47 +37,7 @@
             this.deleteStudentFormButton = new System.Windows.Forms.Button();
             this.startDateFormMaskedBox = new System.Windows.Forms.MaskedTextBox();
             this.studentListView = new System.Windows.Forms.ListView();
-            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.studentToolStripMenuItem,
-            this.tutorToolStripMenuItem,
-            this.roomToolStripMenuItem,
-            this.reservedToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(915, 28);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // studentToolStripMenuItem
-            // 
-            this.studentToolStripMenuItem.Name = "studentToolStripMenuItem";
-            this.studentToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
-            this.studentToolStripMenuItem.Text = "Student";
-            // 
-            // tutorToolStripMenuItem
-            // 
-            this.tutorToolStripMenuItem.Name = "tutorToolStripMenuItem";
-            this.tutorToolStripMenuItem.Size = new System.Drawing.Size(56, 24);
-            this.tutorToolStripMenuItem.Text = "Tutor";
-            // 
-            // roomToolStripMenuItem
-            // 
-            this.roomToolStripMenuItem.Name = "roomToolStripMenuItem";
-            this.roomToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
-            this.roomToolStripMenuItem.Text = "Room";
-            // 
-            // reservedToolStripMenuItem
-            // 
-            this.reservedToolStripMenuItem.Name = "reservedToolStripMenuItem";
-            this.reservedToolStripMenuItem.Size = new System.Drawing.Size(81, 24);
-            this.reservedToolStripMenuItem.Text = "Reserved";
             // 
             // nameStudentFormLabel
             // 
@@ -118,7 +73,7 @@
             // 
             this.nameStudentFormMaskedBox.BeepOnError = true;
             this.nameStudentFormMaskedBox.Location = new System.Drawing.Point(37, 81);
-            this.nameStudentFormMaskedBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nameStudentFormMaskedBox.Margin = new System.Windows.Forms.Padding(4);
             this.nameStudentFormMaskedBox.Name = "nameStudentFormMaskedBox";
             this.nameStudentFormMaskedBox.Size = new System.Drawing.Size(132, 22);
             this.nameStudentFormMaskedBox.TabIndex = 4;
@@ -127,7 +82,7 @@
             // programStudentFormMaskedBox
             // 
             this.programStudentFormMaskedBox.Location = new System.Drawing.Point(37, 167);
-            this.programStudentFormMaskedBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.programStudentFormMaskedBox.Margin = new System.Windows.Forms.Padding(4);
             this.programStudentFormMaskedBox.Name = "programStudentFormMaskedBox";
             this.programStudentFormMaskedBox.Size = new System.Drawing.Size(132, 22);
             this.programStudentFormMaskedBox.TabIndex = 5;
@@ -135,7 +90,7 @@
             // saveStudenFormButton
             // 
             this.saveStudenFormButton.Location = new System.Drawing.Point(37, 507);
-            this.saveStudenFormButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveStudenFormButton.Margin = new System.Windows.Forms.Padding(4);
             this.saveStudenFormButton.Name = "saveStudenFormButton";
             this.saveStudenFormButton.Size = new System.Drawing.Size(100, 28);
             this.saveStudenFormButton.TabIndex = 8;
@@ -146,7 +101,7 @@
             // deleteStudentFormButton
             // 
             this.deleteStudentFormButton.Location = new System.Drawing.Point(212, 507);
-            this.deleteStudentFormButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.deleteStudentFormButton.Margin = new System.Windows.Forms.Padding(4);
             this.deleteStudentFormButton.Name = "deleteStudentFormButton";
             this.deleteStudentFormButton.Size = new System.Drawing.Size(100, 28);
             this.deleteStudentFormButton.TabIndex = 9;
@@ -157,7 +112,7 @@
             // startDateFormMaskedBox
             // 
             this.startDateFormMaskedBox.Location = new System.Drawing.Point(37, 257);
-            this.startDateFormMaskedBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.startDateFormMaskedBox.Margin = new System.Windows.Forms.Padding(4);
             this.startDateFormMaskedBox.Name = "startDateFormMaskedBox";
             this.startDateFormMaskedBox.Size = new System.Drawing.Size(132, 22);
             this.startDateFormMaskedBox.TabIndex = 10;
@@ -166,7 +121,7 @@
             // 
             this.studentListView.FullRowSelect = true;
             this.studentListView.Location = new System.Drawing.Point(355, 81);
-            this.studentListView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.studentListView.Margin = new System.Windows.Forms.Padding(4);
             this.studentListView.Name = "studentListView";
             this.studentListView.Size = new System.Drawing.Size(476, 315);
             this.studentListView.TabIndex = 0;
@@ -188,26 +143,16 @@
             this.Controls.Add(this.startDateStudentFormLabel);
             this.Controls.Add(this.programStudentFormLabel);
             this.Controls.Add(this.nameStudentFormLabel);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "StudentForm";
             this.Text = "StudentForm";
             this.Load += new System.EventHandler(this.StudentForm_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem studentToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem tutorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem roomToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reservedToolStripMenuItem;
         private System.Windows.Forms.Label nameStudentFormLabel;
         private System.Windows.Forms.Label programStudentFormLabel;
         private System.Windows.Forms.Label startDateStudentFormLabel;

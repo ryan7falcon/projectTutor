@@ -87,16 +87,25 @@ namespace projectTutor
 
         private void deleteStudentFormButton_Click(object sender, EventArgs e)
         {
-            //fillForm.studentId is extracted
-            dbc.delete("Student", studentId);
+            //Find studentId in reservation table.
+            //If found in reservation do no delete student
+            if (dbc.checkStudentId(studentId))
+            {
+                MessageBox.Show("Cannot delete student due to referential integrity");
+            }
+            else
+            {
+                
+                //fillForm.studentId is extracted
+                dbc.delete("Student", studentId);
 
-            MessageBox.Show("Deleted student");
+                MessageBox.Show("Deleted student");
 
-            //Update students list
-            getStudents();
-            refreshForm();
+                //Update students list
+                getStudents();
+                refreshForm();
+            }
         }
-
 
 
         private void studentListView_SelectedIndexChanged(object sender, EventArgs e)

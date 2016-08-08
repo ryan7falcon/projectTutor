@@ -86,7 +86,7 @@ namespace projectTutor
             roomForm = null;
         }
 
-        private void tutorMainMenuItem_Click(object sender, EventArgs e)
+        private void tutorMainMenuItem_Click_1(object sender, EventArgs e)
         {
             if (tutorForm == null)
             {
@@ -105,5 +105,11 @@ namespace projectTutor
             tutorForm = null;
         }
 
+        private void MenuForm_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }

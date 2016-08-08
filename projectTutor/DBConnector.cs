@@ -15,8 +15,8 @@ namespace projectTutor
         {
             con = new SqlConnection();
 
-            con.ConnectionString = "Data Source=(localdb)\\Projects;Initial Catalog=FinalProject;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-                                                                                                                
+            con.ConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\javel\\Documents\\dataContainers.mdf;Integrated Security=True;Connect Timeout=30";
+
         }
         
         public SqlConnection getConnection()
@@ -315,7 +315,7 @@ namespace projectTutor
             }
             catch (SqlException ex)
             {
-                Console.WriteLine("Error in adding a poop record: " + ex.Message);
+                Console.WriteLine("Error in adding a record: " + ex.Message);
                 return -1;
             }
         }
@@ -342,5 +342,61 @@ namespace projectTutor
             }
         }
 
+        //Refactor and combine with checkRoomId
+       //check if a record with a certain id exists in the reservation table
+        public bool checkStudentId(int index)
+        {
+            try
+            {
+                con.Open();
+
+                SqlCommand command = new SqlCommand();
+                command.CommandText = "select * from reservation where studentid=@studentid";
+                command.Parameters.AddWithValue("@studentid", index);
+                command.Connection = con;
+                SqlDataReader rd = command.ExecuteReader();
+                if (rd.Read())
+                {
+                    con.Close();
+                    return true;
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error in checking if exists: " + ex.Message);
+            }
+            con.Close();
+            return false;
+
+        }
+        //Refactor and combine with checkreserveid
+        //check if a record with a certain id exists in the reservation table
+        public bool checkRoomId(int index)
+        {
+            try
+            {
+                con.Open();
+
+                SqlCommand command = new SqlCommand();
+                command.CommandText = "select * from reservation where roomid=@roomid";
+                command.Parameters.AddWithValue("@roomid", index);
+                command.Connection = con;
+                SqlDataReader rd = command.ExecuteReader();
+                if (rd.Read())
+                {
+                    con.Close();
+                    return true;
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error in checking if exists: " + ex.Message);
+            }
+            con.Close();
+            return false;
+
+        }
     }
+
 }
+

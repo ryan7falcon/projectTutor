@@ -92,14 +92,24 @@ namespace projectTutor
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            //fillForm.studentId is extracted
-            dbc.delete("Room", roomId);
 
-            MessageBox.Show("Deleted Room");
+            //Find roomId in reservation table.
+            //If found in reservation do not delete room
+            if (dbc.checkRoomId(roomId))
+            {
+                MessageBox.Show("Cannot delete room due to referential integrity");
+            }
+            else
+            {
+                //fillForm.studentId is extracted
+                dbc.delete("Room", roomId);
 
-            //Update students list
-            getRooms();
-            refreshForm();
+                MessageBox.Show("Deleted Room");
+
+                //Update students list
+                getRooms();
+                refreshForm();
+            }
         }
 
         private int convertDay(String n)
@@ -121,13 +131,6 @@ namespace projectTutor
             return day;
         }
 
-     
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
- 
-            MessageBox.Show(dateTimePicker.Value.TimeOfDay.ToString());
-        }
 
         private void roomListView_SelectedIndexChanged(object sender, EventArgs e)
         {
