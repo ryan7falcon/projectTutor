@@ -211,8 +211,14 @@ namespace projectTutor
 
             makeRegForm = new MakeReservationForm(date, timeSlot, stu, arr.tuts, arr.rooms);
             makeRegForm.FormClosed += MakeRegForm_FormClosed;
+            makeRegForm.ReservationMade += makeRegForm_ReservationMade;
             makeRegForm.Show();
                                         
+        }
+
+        private void makeRegForm_ReservationMade(object sender, EventArgs e)
+        {
+            updateCalendar();
         }
 
         private void MakeRegForm_FormClosed(object sender, FormClosedEventArgs e)
