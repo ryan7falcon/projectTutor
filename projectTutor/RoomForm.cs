@@ -38,11 +38,6 @@ namespace projectTutor
 
         private void loadInputs()
         {
-            //Add items in the combobox
-            roomBox.Items.AddRange(new Object[] {
-                "Room 1",
-                "Room 2",
-            });
 
             //Add items in the combobox
             //Can I refactor this later with convertDay to have one declaration of all the days?
@@ -66,9 +61,6 @@ namespace projectTutor
                 dbc.update("Room", room);
                 MessageBox.Show("Updated room");
 
-                //Update rooms list
-                getRooms();
-                refreshForm();
             }
             else
             {
@@ -88,6 +80,9 @@ namespace projectTutor
                 dbc.insert("Room", room);
                 MessageBox.Show("Added room");
             }
+            //Update rooms list
+            getRooms();
+            refreshForm();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -118,7 +113,7 @@ namespace projectTutor
 
 
             //Match the n input into the specified date.
-            for(int i = 1; i < days.Length; i++)
+            for(int i = 0; i < days.Length; i++)
             {
                 //Loop once to find the index number of the day
                 if (days[i] == n)
@@ -129,6 +124,13 @@ namespace projectTutor
             }
             //Then return the number
             return day;
+        }
+
+        //Converts back to a day of the week string
+        private string convertBackToDay(int n)
+        {
+            n = n - 1;
+            return days[n];
         }
 
 
@@ -183,7 +185,7 @@ namespace projectTutor
                 /*Need to refactor*/
                 ListViewItem roomItem = new ListViewItem(new[]{
                     aRoom.Id.ToString() + " " + aRoom.Name + " " +
-                    aRoom.Day + " " + aRoom.Time.ToString()
+                    convertBackToDay(aRoom.Day) + " " + aRoom.Time.ToString()
                 });
                 //Append to studentLisView to display
                 roomListView.Items.Add(roomItem);
@@ -207,6 +209,14 @@ namespace projectTutor
 
         }
 
-      
+        private void roomBox_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void dayBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

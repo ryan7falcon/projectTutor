@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.roomBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dayBox = new System.Windows.Forms.ComboBox();
@@ -37,6 +36,7 @@
             this.roomListView = new System.Windows.Forms.ListView();
             this.savedButton = new System.Windows.Forms.Button();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.roomBox = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -48,15 +48,6 @@
             this.label1.Size = new System.Drawing.Size(86, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "Room Name";
-            // 
-            // roomBox
-            // 
-            this.roomBox.FormattingEnabled = true;
-            this.roomBox.Location = new System.Drawing.Point(40, 79);
-            this.roomBox.Margin = new System.Windows.Forms.Padding(4);
-            this.roomBox.Name = "roomBox";
-            this.roomBox.Size = new System.Drawing.Size(160, 24);
-            this.roomBox.TabIndex = 2;
             // 
             // label2
             // 
@@ -86,6 +77,7 @@
             this.dayBox.Name = "dayBox";
             this.dayBox.Size = new System.Drawing.Size(164, 24);
             this.dayBox.TabIndex = 5;
+            this.dayBox.SelectedIndexChanged += new System.EventHandler(this.dayBox_SelectedIndexChanged);
             // 
             // deleteButton
             // 
@@ -128,13 +120,21 @@
             this.dateTimePicker.ShowUpDown = true;
             this.dateTimePicker.Size = new System.Drawing.Size(200, 22);
             this.dateTimePicker.TabIndex = 12;
-            //this.dateTimePicker.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
+            // roomBox
+            // 
+            this.roomBox.Location = new System.Drawing.Point(39, 80);
+            this.roomBox.Name = "roomBox";
+            this.roomBox.Size = new System.Drawing.Size(165, 22);
+            this.roomBox.TabIndex = 13;
+            this.roomBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.roomBox_MaskInputRejected);
             // 
             // RoomForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(907, 582);
+            this.Controls.Add(this.roomBox);
             this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.savedButton);
             this.Controls.Add(this.roomListView);
@@ -142,7 +142,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dayBox);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.roomBox);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "RoomForm";
@@ -154,7 +153,6 @@
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox roomBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox dayBox;
@@ -162,5 +160,6 @@
         private System.Windows.Forms.ListView roomListView;
         private System.Windows.Forms.Button savedButton;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
+        private System.Windows.Forms.MaskedTextBox roomBox;
     }
 }

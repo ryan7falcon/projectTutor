@@ -120,6 +120,7 @@
             // studentListView
             // 
             this.studentListView.FullRowSelect = true;
+            this.studentListView.GridLines = true;
             this.studentListView.Location = new System.Drawing.Point(355, 81);
             this.studentListView.Margin = new System.Windows.Forms.Padding(4);
             this.studentListView.Name = "studentListView";

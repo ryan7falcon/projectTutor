@@ -39,7 +39,9 @@ namespace projectTutor
             getStudents();
 
             fillForm();
-            
+
+
+
         }
 
         private void StudentForm_Load(object sender, EventArgs e)
@@ -142,6 +144,7 @@ namespace projectTutor
         private void getStudents()
         {
             studentListView.Clear();
+
 
             //Get the current students in the database
             List<List<string>> studentsList = dbc.getList("Student");
