@@ -55,21 +55,51 @@ namespace projectTutor
 
         private void savedButton_Click(object sender, EventArgs e)
         {
-            //Get all the inputs from user
-            String aRoom = roomBox.Text;
-            String day = dayBox.Text;
-            DateTime time = DateTime.Parse(dateTimePicker.Text);
+            if (dbc.checkIfExist("Room", roomId))
+            {
+                //Get the selected item
+                //Pass it to rooms object
+                room.Name = roomBox.Text;
+                room.Day = convertDay(dayBox.Text);
+                room.Time = DateTime.Parse(dateTimePicker.Text);
 
-            //Check the last id of the user in the database and add 1
-            int id = dbc.getLastId("Room") + 1;
+                dbc.update("Room", room);
+                MessageBox.Show("Updated room");
+
+                //Update rooms list
+                getRooms();
+                refreshForm();
+            }
+            else
+            {
+
+                //Get all the inputs from user
+                String aRoom = roomBox.Text;
+                String day = dayBox.Text;
+                DateTime time = DateTime.Parse(dateTimePicker.Text);
+
+                //Check the last id of the user in the database and add 1
+                int id = dbc.getLastId("Room") + 1;
 
 
-            //Create new room object then pass to database
-            room = new Room(id, aRoom, convertDay(day), time);
+                //Create new room object then pass to database
+                room = new Room(id, aRoom, convertDay(day), time);
 
-            dbc.insert("Room", room);
-            MessageBox.Show("Added room");
+                dbc.insert("Room", room);
+                MessageBox.Show("Added room");
+            }
+        }
 
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            //fillForm.studentId is extracted
+            dbc.delete("Room", roomId);
+
+            MessageBox.Show("Deleted Room");
+
+            //Update students list
+            getRooms();
+            refreshForm();
         }
 
         private int convertDay(String n)
@@ -174,16 +204,6 @@ namespace projectTutor
 
         }
 
-        private void deleteButton_Click(object sender, EventArgs e)
-        {
-            //fillForm.studentId is extracted
-            dbc.delete("Room", roomId);
-
-            MessageBox.Show("Deleted Room");
-
-            //Update students list
-            getRooms();
-            refreshForm();
-        }
+      
     }
 }
