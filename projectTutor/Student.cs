@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace projectTutor
 {
-    class Student : Record
+    public class Student : Record
     {
         DBConnector dbc = new DBConnector();
 
@@ -26,6 +26,21 @@ namespace projectTutor
             this.Name = name;
             this.Program = program;
             this.StartYear = start;
+        }
+
+        public static List<Student> getAll()
+        {
+            List<Student> stu = new List<Student>();
+            DBConnector dbc = new DBConnector();
+
+            List<List<string>> stuList = dbc.getList("Student");
+            foreach (List<string> list in stuList)
+            {
+                Student r = new Student(Int32.Parse(list[0]), list[1], list[2], Int32.Parse(list[3]));
+                stu.Add(r);
+            }
+
+            return stu;
         }
 
         //get the info from DB

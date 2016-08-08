@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace projectTutor
 {
     //an abstract class for use in DBConnector
-    abstract class Record
+    public abstract class Record
     {
         //used when updating and inserting records in DB
         public abstract string[] getParameters();

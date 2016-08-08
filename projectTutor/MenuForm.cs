@@ -15,7 +15,7 @@ namespace projectTutor
         ReservationForm regForm;
         StudentForm studentForm;
         RoomForm roomForm;
-        //TutorForm tutorForm;
+        TutorForm tutorForm;
         
 
         public MenuForm()
@@ -86,7 +86,7 @@ namespace projectTutor
             roomForm = null;
         }
 
-        /*private void tutorMainMenuItem_Click(object sender, EventArgs e)
+        private void tutorMainMenuItem_Click(object sender, EventArgs e)
         {
             if (tutorForm == null)
             {
@@ -103,7 +103,7 @@ namespace projectTutor
         private void TutorForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             tutorForm = null;
-        }*/
+        }
 
     }
 }
