@@ -73,17 +73,22 @@ namespace projectTutor
         //check if a student with given Id exists and display their name
         private void btnConfirmStuId_Click(object sender, EventArgs e)
         {           
-            checkStudent();            
+            checkStudent(Int32.Parse(nStuId.Text));            
+        }
+
+        private void nStuId_ValueChanged(object sender, EventArgs e)
+        {
+            checkStudent((int)nStuId.Value);
         }
 
         //check if student with the given id exists and reflect it in text of the label lblStuIdConfirmed
-        private void checkStudent()
+        private void checkStudent(int id)
         {
-            bool stuExist = dbc.checkIfExist("Student", Int32.Parse(nStuId.Text));
+            bool stuExist = dbc.checkIfExist("Student",id);
 
             if (stuExist)
             {               
-                stu = getStudentFromDB(Int32.Parse(nStuId.Text));
+                stu = getStudentFromDB(id);
                 lblStuIdConfirmed.Text = stu.Name;
             }
             else
@@ -121,7 +126,7 @@ namespace projectTutor
             //get the date and time
             DateTime date = getDate(week, day);
             //get the student
-            checkStudent();
+            checkStudent((int)nStuId.Value);
             if (stu == null)
             {
                 MessageBox.Show("Choose a valid student Id first");
@@ -203,9 +208,17 @@ namespace projectTutor
         //this form will allow to pick a tutor and a room and finish the reservation 
         private void processBtn(int day, int timeSlot)
         {
+            bool stuExist = dbc.checkIfExist("Student", Int32.Parse(nStuId.Text));
 
-            //get rooms and tutors
-            TwoLists arr = getTutorsAndRooms(day, timeSlot);
+            if (!stuExist)
+            {
+                MessageBox.Show("Choose a valid student id first");
+                return;
+            }
+                //TODO: prevent from processing if student is not valid
+                //TODO: show all reservations
+                //get rooms and tutors
+                TwoLists arr = getTutorsAndRooms(day, timeSlot);
             //get the date and time
             DateTime date = getDate(week, day);
 
@@ -533,5 +546,7 @@ namespace projectTutor
         {
             processBtn(5, 10);
         }
+
+        
     }
 }
