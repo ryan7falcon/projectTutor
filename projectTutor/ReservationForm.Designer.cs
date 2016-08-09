@@ -130,6 +130,7 @@
             0,
             0,
             0});
+            this.nStuId.ValueChanged += new System.EventHandler(this.nStuId_ValueChanged);
             // 
             // lblStuIdConfirmed
             // 
