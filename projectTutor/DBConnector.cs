@@ -195,6 +195,32 @@ namespace projectTutor
 
         }
 
+        public bool checkIfExist(string table,string coloumn ,int index)
+        {
+            try
+            {
+                con.Open();
+
+                SqlCommand command = new SqlCommand();
+                command.CommandText = "select * from [" + table + "] where "+coloumn+"=@id";
+                command.Parameters.AddWithValue("@id", index);
+                command.Connection = con;
+                SqlDataReader rd = command.ExecuteReader();
+                if (rd.Read())
+                {
+                    con.Close();
+                    return true;
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error in checking if exists: " + ex.Message);
+            }
+            con.Close();
+            return false;
+
+        }
+
         //gets a record from a database, returns a list of field values
         public List<string> get(string table, int index)
         {

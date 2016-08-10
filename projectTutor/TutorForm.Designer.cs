@@ -63,6 +63,8 @@
             this.AvailID = new System.Windows.Forms.MaskedTextBox();
             this.AvailTutorIDL = new System.Windows.Forms.Label();
             this.AvailTutorID = new System.Windows.Forms.NumericUpDown();
+            this.Delete = new System.Windows.Forms.Button();
+            this.DeleteAvail = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.level)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TutorID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Day)).BeginInit();
@@ -396,11 +398,33 @@
             0,
             0});
             // 
+            // Delete
+            // 
+            this.Delete.Location = new System.Drawing.Point(100, 401);
+            this.Delete.Name = "Delete";
+            this.Delete.Size = new System.Drawing.Size(75, 23);
+            this.Delete.TabIndex = 26;
+            this.Delete.Text = "DeleteTutor";
+            this.Delete.UseVisualStyleBackColor = true;
+            this.Delete.Click += new System.EventHandler(this.Delete_Click);
+            // 
+            // DeleteAvail
+            // 
+            this.DeleteAvail.Location = new System.Drawing.Point(181, 401);
+            this.DeleteAvail.Name = "DeleteAvail";
+            this.DeleteAvail.Size = new System.Drawing.Size(113, 23);
+            this.DeleteAvail.TabIndex = 27;
+            this.DeleteAvail.Text = "Delete Availability";
+            this.DeleteAvail.UseVisualStyleBackColor = true;
+            this.DeleteAvail.Click += new System.EventHandler(this.DeleteAvail_Click);
+            // 
             // TutorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1094, 436);
+            this.Controls.Add(this.DeleteAvail);
+            this.Controls.Add(this.Delete);
             this.Controls.Add(this.AvailTutorID);
             this.Controls.Add(this.AvailTutorIDL);
             this.Controls.Add(this.AvailID);
@@ -474,6 +498,8 @@
         private System.Windows.Forms.MaskedTextBox AvailID;
         private System.Windows.Forms.NumericUpDown AvailTutorID;
         private System.Windows.Forms.Label AvailTutorIDL;
+        private System.Windows.Forms.Button Delete;
+        private System.Windows.Forms.Button DeleteAvail;
     }
 
         #endregion
