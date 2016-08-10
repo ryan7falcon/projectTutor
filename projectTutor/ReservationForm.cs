@@ -31,14 +31,32 @@ namespace projectTutor
 
             //populate buttons list
             buttons = this.Controls.OfType<Button>().ToList();
-            Button toExclude = buttons.Single(obj => obj.Name == "btnConfirmStuId");
-            buttons.Remove(toExclude);
-            toExclude = buttons.Single(obj => obj.Name == "btnNext");
+            Button toExclude = buttons.Single(obj => obj.Name == "btnNext");
             buttons.Remove(toExclude);
             toExclude = buttons.Single(obj => obj.Name == "btnPrev");
             buttons.Remove(toExclude);
 
             updateCalendar();
+
+            updateList();
+
+        }
+
+        private void updateList()
+        {
+            lvResList.Items.Clear();
+
+            List<Reservation> resList = Reservation.getAll();
+            //get all the customers from the database
+            List<List<string>> listOfLists = dbc.getList("Reservation");
+            foreach (List<string> list in listOfLists)
+            {
+                //fill in one row in the listView
+                Reservation res = new Reservation(Int32.Parse(list[0]), Int32.Parse(list[1]), DateTime.Parse(list[2]), Int32.Parse(list[3]), Int32.Parse(list[4]));
+                ListViewItem item = new ListViewItem(new[] { res.Id.ToString(), res.StudentId.ToString(), res.TutorId.ToString(), res.RoomId.ToString(), res.TimeSlot.ToString() });
+                lvResList.Items.Add(item);
+            }
+
         }
 
         private class TwoLists{
@@ -232,6 +250,7 @@ namespace projectTutor
         private void makeRegForm_ReservationMade(object sender, EventArgs e)
         {
             updateCalendar();
+            updateList();
         }
 
         private void MakeRegForm_FormClosed(object sender, FormClosedEventArgs e)
