@@ -60,6 +60,8 @@ namespace projectTutor
 
                 dbc.update("Room", room);
                 MessageBox.Show("Updated room");
+                //Update rooms list
+                getRooms();
 
             }
             else
@@ -195,14 +197,16 @@ namespace projectTutor
         private void fillForm()
         {
             roomId = room.Id;
+            idBox.Text = roomId.ToString();
             roomBox.Text = room.Name;
-            dayBox.Text = room.Day.ToString();
+            dayBox.Text = convertBackToDay(room.Day);
             dateTimePicker.Text = room.Time.ToString();
         }
 
         private void refreshForm()
         {
             roomId = 0;
+            idBox.Text = "";
             roomBox.Text = "";
             dayBox.Text = "";
             dateTimePicker.Text = "";
@@ -215,6 +219,22 @@ namespace projectTutor
         }
 
         private void dayBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void uniqueButton_Click(object sender, EventArgs e)
+        {
+            roomId = dbc.getLastId("Room") + 1;
+            idBox.Text = roomId.ToString();
+        }
+
+        private void dayBox_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void idBox_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
         }

@@ -28,20 +28,8 @@ namespace projectTutor
             InitializeComponent();
             dbc = new DBConnector();
 
-            //Get the first id of the student
-            int id = dbc.getFirstId("Student");
-
-            //Get the first student from db
-            student = getStudent(id);
-            studentId = id;
-
             //Testing load student to List
             getStudents();
-
-            fillForm();
-
-
-
         }
 
         private void StudentForm_Load(object sender, EventArgs e)
@@ -51,12 +39,16 @@ namespace projectTutor
         private void saveStudenFormButton_Click(object sender, EventArgs e)
         {
 
-            if (dbc.checkIfExist("Student", studentId))
+            if (dbc.checkIfExist("Student", Int32.Parse(studentIdBox.Text)))
             {
-                //Update the input boxes
-                student.Name = nameStudentFormMaskedBox.Text;
-                student.Program = programStudentFormMaskedBox.Text;
-                student.StartYear = Int32.Parse(startDateFormMaskedBox.Text);
+                //Get all the inputs from user
+                int studentId = Int32.Parse(studentIdBox.Text);
+                String studentName = nameStudentFormMaskedBox.Text;
+                String studentProgram = programStudentFormMaskedBox.Text;
+                int startDate = Convert.ToInt32(startDateFormMaskedBox.Text);
+
+                //Pass to student object
+                student = new Student(studentId, studentName, studentProgram, startDate);
 
                 //Pass the new updated student object to the database
                 dbc.update("Student", student);
@@ -64,17 +56,14 @@ namespace projectTutor
             }
             else
             {
-                //Get all the inputs from user 
+                //Get all the inputs from user
+                int studentId = Int32.Parse(studentIdBox.Text);
                 String studentName = nameStudentFormMaskedBox.Text;
                 String studentProgram = programStudentFormMaskedBox.Text;
                 int startDate = Convert.ToInt32(startDateFormMaskedBox.Text);
 
-                //Get the last id of the table
-                //Add one then increase by 1
-                int id = dbc.getLastId("Student") + 1;
-
                 //Add to student object
-                student = new Student(id, studentName, studentProgram, startDate);
+                student = new Student(studentId, studentName, studentProgram, startDate);
 
                 //Pass data to database
                 dbc.insert("Student", student);
@@ -91,7 +80,7 @@ namespace projectTutor
         {
             //Find studentId in reservation table.
             //If found in reservation do no delete student
-            if (dbc.checkStudentId(studentId))
+            if (dbc.checkStudentId(student.Id))
             {
                 MessageBox.Show("Cannot delete student due to referential integrity");
             }
@@ -155,21 +144,19 @@ namespace projectTutor
                 Student aStudent = new Student(Int32.Parse(student[0]), student[1],
                                                 student[2], Int32.Parse(student[3]));
 
-
                 //Pass student object to List object
-                /*Need to refactor*/
-                ListViewItem studentItem = new ListViewItem(new[]{
+                //TODO: Need to refactor to a much intuitive format. /
+                ListViewItem studentItem = new ListViewItem(new[] {
                     aStudent.Id.ToString() + " " + aStudent.Name + " " +
-                    aStudent.Program + " " + aStudent.StartYear.ToString()
-                });
-                //Append to studentLisView to display
+                    aStudent.Program + " " + aStudent.StartYear.ToString()                });
                 studentListView.Items.Add(studentItem);
             }
         }
 
         private void fillForm()
         {
-            studentId = student.Id;
+            //TODO: Add student id on the form. Then, connect it after.
+            studentIdBox.Text = student.Id.ToString();
             nameStudentFormMaskedBox.Text = student.Name;
             programStudentFormMaskedBox.Text = student.Program;
             startDateFormMaskedBox.Text = student.StartYear.ToString();
@@ -178,7 +165,7 @@ namespace projectTutor
 
         private void refreshForm()
         {
-            studentId = 0;
+            studentIdBox.Text = "";
             nameStudentFormMaskedBox.Text = "";
             programStudentFormMaskedBox.Text = "";
             startDateFormMaskedBox.Text = "";

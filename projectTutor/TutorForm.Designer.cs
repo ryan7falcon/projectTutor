@@ -76,9 +76,10 @@
             // 
             // Save
             // 
-            this.Save.Location = new System.Drawing.Point(9, 401);
+            this.Save.Location = new System.Drawing.Point(12, 494);
+            this.Save.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Save.Name = "Save";
-            this.Save.Size = new System.Drawing.Size(75, 23);
+            this.Save.Size = new System.Drawing.Size(100, 28);
             this.Save.TabIndex = 0;
             this.Save.Text = "Save";
             this.Save.UseVisualStyleBackColor = true;
@@ -86,9 +87,10 @@
             // 
             // UniqueID
             // 
-            this.UniqueID.Location = new System.Drawing.Point(219, 13);
+            this.UniqueID.Location = new System.Drawing.Point(292, 16);
+            this.UniqueID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.UniqueID.Name = "UniqueID";
-            this.UniqueID.Size = new System.Drawing.Size(75, 23);
+            this.UniqueID.Size = new System.Drawing.Size(100, 28);
             this.UniqueID.TabIndex = 1;
             this.UniqueID.Text = "UniqueId";
             this.UniqueID.UseVisualStyleBackColor = true;
@@ -97,18 +99,20 @@
             // TutorIdL
             // 
             this.TutorIdL.AutoSize = true;
-            this.TutorIdL.Location = new System.Drawing.Point(12, 18);
+            this.TutorIdL.Location = new System.Drawing.Point(16, 22);
+            this.TutorIdL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TutorIdL.Name = "TutorIdL";
-            this.TutorIdL.Size = new System.Drawing.Size(41, 13);
+            this.TutorIdL.Size = new System.Drawing.Size(53, 17);
             this.TutorIdL.TabIndex = 2;
             this.TutorIdL.Text = "TutorId";
             // 
             // TutorNameL
             // 
             this.TutorNameL.AutoSize = true;
-            this.TutorNameL.Location = new System.Drawing.Point(6, 60);
+            this.TutorNameL.Location = new System.Drawing.Point(8, 74);
+            this.TutorNameL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TutorNameL.Name = "TutorNameL";
-            this.TutorNameL.Size = new System.Drawing.Size(60, 13);
+            this.TutorNameL.Size = new System.Drawing.Size(79, 17);
             this.TutorNameL.TabIndex = 3;
             this.TutorNameL.Text = "TutorName";
             this.TutorNameL.Click += new System.EventHandler(this.label2_Click);
@@ -116,69 +120,77 @@
             // TutorSL
             // 
             this.TutorSL.AutoSize = true;
-            this.TutorSL.Location = new System.Drawing.Point(12, 93);
+            this.TutorSL.Location = new System.Drawing.Point(16, 114);
+            this.TutorSL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TutorSL.Name = "TutorSL";
-            this.TutorSL.Size = new System.Drawing.Size(48, 13);
+            this.TutorSL.Size = new System.Drawing.Size(62, 17);
             this.TutorSL.TabIndex = 4;
             this.TutorSL.Text = "Subjects";
             // 
             // TutorLevelL
             // 
             this.TutorLevelL.AutoSize = true;
-            this.TutorLevelL.Location = new System.Drawing.Point(12, 132);
+            this.TutorLevelL.Location = new System.Drawing.Point(16, 162);
+            this.TutorLevelL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TutorLevelL.Name = "TutorLevelL";
-            this.TutorLevelL.Size = new System.Drawing.Size(33, 13);
+            this.TutorLevelL.Size = new System.Drawing.Size(42, 17);
             this.TutorLevelL.TabIndex = 5;
             this.TutorLevelL.Text = "Level";
             // 
             // TutorRateL
             // 
             this.TutorRateL.AutoSize = true;
-            this.TutorRateL.Location = new System.Drawing.Point(3, 179);
+            this.TutorRateL.Location = new System.Drawing.Point(4, 220);
+            this.TutorRateL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TutorRateL.Name = "TutorRateL";
-            this.TutorRateL.Size = new System.Drawing.Size(63, 13);
+            this.TutorRateL.Size = new System.Drawing.Size(83, 17);
             this.TutorRateL.TabIndex = 6;
             this.TutorRateL.Text = "Hourly Rate";
             // 
             // Availbitiy
             // 
             this.Availbitiy.AutoSize = true;
-            this.Availbitiy.Location = new System.Drawing.Point(72, 229);
+            this.Availbitiy.Location = new System.Drawing.Point(96, 282);
+            this.Availbitiy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Availbitiy.Name = "Availbitiy";
-            this.Availbitiy.Size = new System.Drawing.Size(52, 13);
+            this.Availbitiy.Size = new System.Drawing.Size(69, 17);
             this.Availbitiy.TabIndex = 7;
             this.Availbitiy.Text = "Availibility";
             // 
             // DayL
             // 
             this.DayL.AutoSize = true;
-            this.DayL.Location = new System.Drawing.Point(12, 282);
+            this.DayL.Location = new System.Drawing.Point(16, 347);
+            this.DayL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.DayL.Name = "DayL";
-            this.DayL.Size = new System.Drawing.Size(26, 13);
+            this.DayL.Size = new System.Drawing.Size(33, 17);
             this.DayL.TabIndex = 8;
             this.DayL.Text = "Day";
             // 
             // AvailTimeL
             // 
             this.AvailTimeL.AutoSize = true;
-            this.AvailTimeL.Location = new System.Drawing.Point(12, 329);
+            this.AvailTimeL.Location = new System.Drawing.Point(16, 405);
+            this.AvailTimeL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.AvailTimeL.Name = "AvailTimeL";
-            this.AvailTimeL.Size = new System.Drawing.Size(30, 13);
+            this.AvailTimeL.Size = new System.Drawing.Size(39, 17);
             this.AvailTimeL.TabIndex = 9;
             this.AvailTimeL.Text = "Time";
             this.AvailTimeL.Click += new System.EventHandler(this.label8_Click);
             // 
             // rate
             // 
-            this.rate.Location = new System.Drawing.Point(75, 176);
+            this.rate.Location = new System.Drawing.Point(100, 217);
+            this.rate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rate.Mask = "00.00";
             this.rate.Name = "rate";
-            this.rate.Size = new System.Drawing.Size(100, 20);
+            this.rate.Size = new System.Drawing.Size(132, 22);
             this.rate.TabIndex = 11;
             // 
             // level
             // 
-            this.level.Location = new System.Drawing.Point(75, 132);
+            this.level.Location = new System.Drawing.Point(100, 162);
+            this.level.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.level.Maximum = new decimal(new int[] {
             4,
             0,
@@ -190,7 +202,7 @@
             0,
             0});
             this.level.Name = "level";
-            this.level.Size = new System.Drawing.Size(120, 20);
+            this.level.Size = new System.Drawing.Size(160, 22);
             this.level.TabIndex = 12;
             this.level.Value = new decimal(new int[] {
             1,
@@ -200,14 +212,15 @@
             // 
             // TutorID
             // 
-            this.TutorID.Location = new System.Drawing.Point(75, 16);
+            this.TutorID.Location = new System.Drawing.Point(100, 20);
+            this.TutorID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TutorID.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.TutorID.Name = "TutorID";
-            this.TutorID.Size = new System.Drawing.Size(120, 20);
+            this.TutorID.Size = new System.Drawing.Size(160, 22);
             this.TutorID.TabIndex = 13;
             this.TutorID.Value = new decimal(new int[] {
             1,
@@ -217,15 +230,17 @@
             // 
             // TutorName
             // 
-            this.TutorName.Location = new System.Drawing.Point(75, 57);
+            this.TutorName.Location = new System.Drawing.Point(100, 70);
+            this.TutorName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TutorName.Name = "TutorName";
-            this.TutorName.Size = new System.Drawing.Size(120, 20);
+            this.TutorName.Size = new System.Drawing.Size(159, 22);
             this.TutorName.TabIndex = 14;
             this.TutorName.Validating += new System.ComponentModel.CancelEventHandler(this.TutorName_Validating);
             // 
             // Day
             // 
-            this.Day.Location = new System.Drawing.Point(75, 282);
+            this.Day.Location = new System.Drawing.Point(100, 347);
+            this.Day.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Day.Maximum = new decimal(new int[] {
             7,
             0,
@@ -237,7 +252,7 @@
             0,
             0});
             this.Day.Name = "Day";
-            this.Day.Size = new System.Drawing.Size(120, 20);
+            this.Day.Size = new System.Drawing.Size(160, 22);
             this.Day.TabIndex = 15;
             this.Day.Value = new decimal(new int[] {
             1,
@@ -247,18 +262,20 @@
             // 
             // Time
             // 
-            this.Time.Location = new System.Drawing.Point(75, 329);
+            this.Time.Location = new System.Drawing.Point(100, 405);
+            this.Time.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Time.Mask = "90:00";
             this.Time.Name = "Time";
-            this.Time.Size = new System.Drawing.Size(100, 20);
+            this.Time.Size = new System.Drawing.Size(132, 22);
             this.Time.TabIndex = 16;
             this.Time.ValidatingType = typeof(System.DateTime);
             // 
             // Subjects
             // 
-            this.Subjects.Location = new System.Drawing.Point(75, 90);
+            this.Subjects.Location = new System.Drawing.Point(100, 111);
+            this.Subjects.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Subjects.Name = "Subjects";
-            this.Subjects.Size = new System.Drawing.Size(120, 20);
+            this.Subjects.Size = new System.Drawing.Size(159, 22);
             this.Subjects.TabIndex = 18;
             this.Subjects.Validating += new System.ComponentModel.CancelEventHandler(this.Subjects_Validating);
             // 
@@ -281,10 +298,11 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listView1.Location = new System.Drawing.Point(300, 13);
+            this.listView1.Location = new System.Drawing.Point(400, 16);
+            this.listView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(429, 385);
+            this.listView1.Size = new System.Drawing.Size(571, 473);
             this.listView1.TabIndex = 19;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -328,10 +346,11 @@
             this.listView2.FullRowSelect = true;
             this.listView2.GridLines = true;
             this.listView2.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listView2.Location = new System.Drawing.Point(766, 12);
+            this.listView2.Location = new System.Drawing.Point(1021, 15);
+            this.listView2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listView2.MultiSelect = false;
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(316, 385);
+            this.listView2.Size = new System.Drawing.Size(420, 473);
             this.listView2.TabIndex = 20;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -358,9 +377,10 @@
             // AvailIDLabel
             // 
             this.AvailIDLabel.AutoSize = true;
-            this.AvailIDLabel.Location = new System.Drawing.Point(-1, 247);
+            this.AvailIDLabel.Location = new System.Drawing.Point(-1, 304);
+            this.AvailIDLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.AvailIDLabel.Name = "AvailIDLabel";
-            this.AvailIDLabel.Size = new System.Drawing.Size(70, 13);
+            this.AvailIDLabel.Size = new System.Drawing.Size(91, 17);
             this.AvailIDLabel.TabIndex = 22;
             this.AvailIDLabel.Text = "Availability ID";
             this.AvailIDLabel.Click += new System.EventHandler(this.AvailIDLabel_Click);
@@ -368,22 +388,24 @@
             // AvailTutorIDL
             // 
             this.AvailTutorIDL.AutoSize = true;
-            this.AvailTutorIDL.Location = new System.Drawing.Point(3, 369);
+            this.AvailTutorIDL.Location = new System.Drawing.Point(4, 454);
+            this.AvailTutorIDL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.AvailTutorIDL.Name = "AvailTutorIDL";
-            this.AvailTutorIDL.Size = new System.Drawing.Size(72, 13);
+            this.AvailTutorIDL.Size = new System.Drawing.Size(95, 17);
             this.AvailTutorIDL.TabIndex = 24;
             this.AvailTutorIDL.Text = "TutorID(Avail)";
             // 
             // AvailTutorID
             // 
-            this.AvailTutorID.Location = new System.Drawing.Point(75, 362);
+            this.AvailTutorID.Location = new System.Drawing.Point(100, 446);
+            this.AvailTutorID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AvailTutorID.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.AvailTutorID.Name = "AvailTutorID";
-            this.AvailTutorID.Size = new System.Drawing.Size(120, 20);
+            this.AvailTutorID.Size = new System.Drawing.Size(160, 22);
             this.AvailTutorID.TabIndex = 25;
             this.AvailTutorID.Value = new decimal(new int[] {
             1,
@@ -393,9 +415,10 @@
             // 
             // Delete
             // 
-            this.Delete.Location = new System.Drawing.Point(100, 401);
+            this.Delete.Location = new System.Drawing.Point(133, 494);
+            this.Delete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Delete.Name = "Delete";
-            this.Delete.Size = new System.Drawing.Size(75, 23);
+            this.Delete.Size = new System.Drawing.Size(100, 28);
             this.Delete.TabIndex = 26;
             this.Delete.Text = "DeleteTutor";
             this.Delete.UseVisualStyleBackColor = true;
@@ -403,9 +426,10 @@
             // 
             // DeleteAvail
             // 
-            this.DeleteAvail.Location = new System.Drawing.Point(181, 401);
+            this.DeleteAvail.Location = new System.Drawing.Point(241, 494);
+            this.DeleteAvail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DeleteAvail.Name = "DeleteAvail";
-            this.DeleteAvail.Size = new System.Drawing.Size(113, 23);
+            this.DeleteAvail.Size = new System.Drawing.Size(151, 28);
             this.DeleteAvail.TabIndex = 27;
             this.DeleteAvail.Text = "Delete Availability";
             this.DeleteAvail.UseVisualStyleBackColor = true;
@@ -413,7 +437,8 @@
             // 
             // AvailID
             // 
-            this.AvailID.Location = new System.Drawing.Point(75, 247);
+            this.AvailID.Location = new System.Drawing.Point(100, 304);
+            this.AvailID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AvailID.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -425,7 +450,7 @@
             0,
             0});
             this.AvailID.Name = "AvailID";
-            this.AvailID.Size = new System.Drawing.Size(120, 20);
+            this.AvailID.Size = new System.Drawing.Size(160, 22);
             this.AvailID.TabIndex = 28;
             this.AvailID.Value = new decimal(new int[] {
             1,
@@ -435,9 +460,9 @@
             // 
             // TutorForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1094, 436);
+            this.ClientSize = new System.Drawing.Size(1459, 537);
             this.Controls.Add(this.AvailID);
             this.Controls.Add(this.DeleteAvail);
             this.Controls.Add(this.Delete);
@@ -463,6 +488,7 @@
             this.Controls.Add(this.TutorIdL);
             this.Controls.Add(this.UniqueID);
             this.Controls.Add(this.Save);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "TutorForm";
             this.Text = "TutorForm";
             this.Load += new System.EventHandler(this.Tutor_Load);

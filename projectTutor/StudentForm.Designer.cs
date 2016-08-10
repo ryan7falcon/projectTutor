@@ -37,12 +37,14 @@
             this.deleteStudentFormButton = new System.Windows.Forms.Button();
             this.startDateFormMaskedBox = new System.Windows.Forms.MaskedTextBox();
             this.studentListView = new System.Windows.Forms.ListView();
+            this.studentIdBox = new System.Windows.Forms.MaskedTextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // nameStudentFormLabel
             // 
             this.nameStudentFormLabel.AutoSize = true;
-            this.nameStudentFormLabel.Location = new System.Drawing.Point(32, 62);
+            this.nameStudentFormLabel.Location = new System.Drawing.Point(32, 155);
             this.nameStudentFormLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.nameStudentFormLabel.Name = "nameStudentFormLabel";
             this.nameStudentFormLabel.Size = new System.Drawing.Size(45, 17);
@@ -52,7 +54,7 @@
             // programStudentFormLabel
             // 
             this.programStudentFormLabel.AutoSize = true;
-            this.programStudentFormLabel.Location = new System.Drawing.Point(33, 148);
+            this.programStudentFormLabel.Location = new System.Drawing.Point(34, 230);
             this.programStudentFormLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.programStudentFormLabel.Name = "programStudentFormLabel";
             this.programStudentFormLabel.Size = new System.Drawing.Size(62, 17);
@@ -62,7 +64,7 @@
             // startDateStudentFormLabel
             // 
             this.startDateStudentFormLabel.AutoSize = true;
-            this.startDateStudentFormLabel.Location = new System.Drawing.Point(33, 238);
+            this.startDateStudentFormLabel.Location = new System.Drawing.Point(32, 305);
             this.startDateStudentFormLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.startDateStudentFormLabel.Name = "startDateStudentFormLabel";
             this.startDateStudentFormLabel.Size = new System.Drawing.Size(72, 17);
@@ -72,7 +74,7 @@
             // nameStudentFormMaskedBox
             // 
             this.nameStudentFormMaskedBox.BeepOnError = true;
-            this.nameStudentFormMaskedBox.Location = new System.Drawing.Point(37, 81);
+            this.nameStudentFormMaskedBox.Location = new System.Drawing.Point(37, 176);
             this.nameStudentFormMaskedBox.Margin = new System.Windows.Forms.Padding(4);
             this.nameStudentFormMaskedBox.Name = "nameStudentFormMaskedBox";
             this.nameStudentFormMaskedBox.Size = new System.Drawing.Size(132, 22);
@@ -81,7 +83,7 @@
             // 
             // programStudentFormMaskedBox
             // 
-            this.programStudentFormMaskedBox.Location = new System.Drawing.Point(37, 167);
+            this.programStudentFormMaskedBox.Location = new System.Drawing.Point(37, 251);
             this.programStudentFormMaskedBox.Margin = new System.Windows.Forms.Padding(4);
             this.programStudentFormMaskedBox.Name = "programStudentFormMaskedBox";
             this.programStudentFormMaskedBox.Size = new System.Drawing.Size(132, 22);
@@ -111,7 +113,7 @@
             // 
             // startDateFormMaskedBox
             // 
-            this.startDateFormMaskedBox.Location = new System.Drawing.Point(37, 257);
+            this.startDateFormMaskedBox.Location = new System.Drawing.Point(37, 326);
             this.startDateFormMaskedBox.Margin = new System.Windows.Forms.Padding(4);
             this.startDateFormMaskedBox.Name = "startDateFormMaskedBox";
             this.startDateFormMaskedBox.Size = new System.Drawing.Size(132, 22);
@@ -121,20 +123,41 @@
             // 
             this.studentListView.FullRowSelect = true;
             this.studentListView.GridLines = true;
-            this.studentListView.Location = new System.Drawing.Point(355, 81);
+            this.studentListView.Location = new System.Drawing.Point(311, 81);
             this.studentListView.Margin = new System.Windows.Forms.Padding(4);
             this.studentListView.Name = "studentListView";
-            this.studentListView.Size = new System.Drawing.Size(476, 315);
+            this.studentListView.Size = new System.Drawing.Size(520, 315);
             this.studentListView.TabIndex = 0;
             this.studentListView.UseCompatibleStateImageBehavior = false;
             this.studentListView.View = System.Windows.Forms.View.List;
             this.studentListView.SelectedIndexChanged += new System.EventHandler(this.studentListView_SelectedIndexChanged);
+            // 
+            // studentIdBox
+            // 
+            this.studentIdBox.BeepOnError = true;
+            this.studentIdBox.Location = new System.Drawing.Point(37, 116);
+            this.studentIdBox.Margin = new System.Windows.Forms.Padding(4);
+            this.studentIdBox.Name = "studentIdBox";
+            this.studentIdBox.Size = new System.Drawing.Size(132, 22);
+            this.studentIdBox.TabIndex = 11;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(34, 95);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 17);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Student Id";
             // 
             // StudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(915, 575);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.studentIdBox);
             this.Controls.Add(this.studentListView);
             this.Controls.Add(this.startDateFormMaskedBox);
             this.Controls.Add(this.deleteStudentFormButton);
@@ -163,5 +186,7 @@
         private System.Windows.Forms.Button deleteStudentFormButton;
         private System.Windows.Forms.MaskedTextBox startDateFormMaskedBox;
         private System.Windows.Forms.ListView studentListView;
+        private System.Windows.Forms.MaskedTextBox studentIdBox;
+        private System.Windows.Forms.Label label1;
     }
 }
