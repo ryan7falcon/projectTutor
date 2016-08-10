@@ -60,17 +60,18 @@
             this.TimeL = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TutorIDR = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.AvailIDLabel = new System.Windows.Forms.Label();
-            this.AvailID = new System.Windows.Forms.MaskedTextBox();
             this.AvailTutorIDL = new System.Windows.Forms.Label();
             this.AvailTutorID = new System.Windows.Forms.NumericUpDown();
             this.Delete = new System.Windows.Forms.Button();
             this.DeleteAvail = new System.Windows.Forms.Button();
+            this.AvailID = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.level)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TutorID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Day)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AvailTutorID)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AvailID)).BeginInit();
             this.SuspendLayout();
             // 
             // Save
@@ -301,10 +302,12 @@
             // TutorNameC
             // 
             this.TutorNameC.Text = "Name";
+            this.TutorNameC.Width = 140;
             // 
             // SubjectsC
             // 
             this.SubjectsC.Text = "Subjects";
+            this.SubjectsC.Width = 120;
             // 
             // LevelC
             // 
@@ -347,7 +350,7 @@
             // TimeL
             // 
             this.TimeL.Text = "Time";
-            this.TimeL.Width = 136;
+            this.TimeL.Width = 100;
             // 
             // TutorIDR
             // 
@@ -362,15 +365,6 @@
             this.AvailIDLabel.TabIndex = 22;
             this.AvailIDLabel.Text = "Availability ID";
             this.AvailIDLabel.Click += new System.EventHandler(this.AvailIDLabel_Click);
-            // 
-            // AvailID
-            // 
-            this.AvailID.Location = new System.Drawing.Point(75, 245);
-            this.AvailID.Mask = "00000";
-            this.AvailID.Name = "AvailID";
-            this.AvailID.Size = new System.Drawing.Size(100, 20);
-            this.AvailID.TabIndex = 23;
-            this.AvailID.ValidatingType = typeof(int);
             // 
             // AvailTutorIDL
             // 
@@ -418,16 +412,38 @@
             this.DeleteAvail.UseVisualStyleBackColor = true;
             this.DeleteAvail.Click += new System.EventHandler(this.DeleteAvail_Click);
             // 
+            // AvailID
+            // 
+            this.AvailID.Location = new System.Drawing.Point(75, 247);
+            this.AvailID.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.AvailID.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.AvailID.Name = "AvailID";
+            this.AvailID.Size = new System.Drawing.Size(120, 20);
+            this.AvailID.TabIndex = 28;
+            this.AvailID.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // TutorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1094, 436);
+            this.Controls.Add(this.AvailID);
             this.Controls.Add(this.DeleteAvail);
             this.Controls.Add(this.Delete);
             this.Controls.Add(this.AvailTutorID);
             this.Controls.Add(this.AvailTutorIDL);
-            this.Controls.Add(this.AvailID);
             this.Controls.Add(this.AvailIDLabel);
             this.Controls.Add(this.listView2);
             this.Controls.Add(this.listView1);
@@ -457,6 +473,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AvailTutorID)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AvailID)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -495,11 +512,11 @@
         private System.Windows.Forms.ColumnHeader TimeL;
         private System.Windows.Forms.ColumnHeader TutorIDR;
         private System.Windows.Forms.Label AvailIDLabel;
-        private System.Windows.Forms.MaskedTextBox AvailID;
         private System.Windows.Forms.NumericUpDown AvailTutorID;
         private System.Windows.Forms.Label AvailTutorIDL;
         private System.Windows.Forms.Button Delete;
         private System.Windows.Forms.Button DeleteAvail;
+        private System.Windows.Forms.NumericUpDown AvailID;
     }
 
         #endregion

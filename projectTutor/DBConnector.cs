@@ -15,7 +15,7 @@ namespace projectTutor
         {
             con = new SqlConnection();
 
-            con.ConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\javel\\Documents\\dataContainers.mdf;Integrated Security=True;Connect Timeout=30";
+            con.ConnectionString = "Data Source=(localdb)\\Projects;Initial Catalog=FinalProject;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         }
         

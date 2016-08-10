@@ -192,7 +192,7 @@ namespace projectTutor
                 }
 
                 //check to see an id has been given
-                if (AvailID.MaskCompleted)
+                if (AvailID.Value >= 1)
                 {
                     DataRow[] selectedAvilrow = ds.Tables["Availability"].Select("Id = '" + AvailID.Text + "'");
                     //if the row exists then updates that row
@@ -200,7 +200,7 @@ namespace projectTutor
                     {
                         if (Time.MaskCompleted)
                         {
-                            selectedAvilrow[0]["Id"] = AvailID.Text;
+                            selectedAvilrow[0]["Id"] = AvailID.Value;
                             selectedAvilrow[0]["Day"] = Day.Value.ToString();
                             selectedAvilrow[0]["Time"] = Time.Text;
                             selectedAvilrow[0]["TutorId"] = AvailTutorID.Value.ToString();
@@ -212,7 +212,7 @@ namespace projectTutor
                         if (Time.MaskCompleted)
                         {
                             DataRow toInsert = ds.Tables["Availability"].NewRow();
-                            toInsert["Id"] = AvailID.Text;
+                            toInsert["Id"] = AvailID.Value;
                             toInsert["Day"] = Day.Value.ToString();
                             toInsert["Time"] = Time.Text;
                             toInsert["TutorId"] = AvailTutorID.Value.ToString();
@@ -351,7 +351,7 @@ namespace projectTutor
                 int avialindex;
                 
 
-                if (AvailID.MaskCompleted)
+                if (AvailID.Value >= 1)
                 {
                     selectedAvilrow = ds.Tables["Availability"].Select("Id = '" + AvailID.Text + "'");
                     if (selectedAvilrow.Length == 1)
