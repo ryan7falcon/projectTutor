@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.ListView;
 
 namespace projectTutor
 {
@@ -31,14 +32,34 @@ namespace projectTutor
 
             //populate buttons list
             buttons = this.Controls.OfType<Button>().ToList();
-            Button toExclude = buttons.Single(obj => obj.Name == "btnConfirmStuId");
-            buttons.Remove(toExclude);
-            toExclude = buttons.Single(obj => obj.Name == "btnNext");
+            Button toExclude = buttons.Single(obj => obj.Name == "btnNext");
             buttons.Remove(toExclude);
             toExclude = buttons.Single(obj => obj.Name == "btnPrev");
             buttons.Remove(toExclude);
+            toExclude = buttons.Single(obj => obj.Name == "btnDelete");
+            buttons.Remove(toExclude);
 
             updateCalendar();
+
+            updateList();
+
+        }
+
+        private void updateList()
+        {
+            lvResList.Items.Clear();
+
+            List<Reservation> resList = Reservation.getAll();
+            //get all the customers from the database
+            List<List<string>> listOfLists = dbc.getList("Reservation");
+            foreach (List<string> list in listOfLists)
+            {
+                //fill in one row in the listView
+                Reservation res = new Reservation(Int32.Parse(list[0]), Int32.Parse(list[1]), DateTime.Parse(list[2]), Int32.Parse(list[3]), Int32.Parse(list[4]));
+                ListViewItem item = new ListViewItem(new[] { res.Id.ToString(), res.StudentId.ToString(), res.TutorId.ToString(), res.RoomId.ToString(), res.TimeSlot.ToString() });
+                lvResList.Items.Add(item);
+            }
+
         }
 
         private class TwoLists{
@@ -71,11 +92,6 @@ namespace projectTutor
         }
 
         //check if a student with given Id exists and display their name
-        private void btnConfirmStuId_Click(object sender, EventArgs e)
-        {           
-            checkStudent(Int32.Parse(nStuId.Text));            
-        }
-
         private void nStuId_ValueChanged(object sender, EventArgs e)
         {
             checkStudent((int)nStuId.Value);
@@ -93,7 +109,7 @@ namespace projectTutor
             }
             else
             {
-                lblStuIdConfirmed.Text = "Student " + nStuId.Text + " not found";
+                lblStuIdConfirmed.Text = "Student " + id + " not found";
             }
         }
 
@@ -232,6 +248,7 @@ namespace projectTutor
         private void makeRegForm_ReservationMade(object sender, EventArgs e)
         {
             updateCalendar();
+            updateList();
         }
 
         private void MakeRegForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -547,6 +564,21 @@ namespace projectTutor
             processBtn(5, 10);
         }
 
-        
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            dbc.delete("Reservation", res.Id);
+            updateList();
+            updateCalendar();
+        }
+
+        private void lvResList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectedListViewItemCollection items = lvResList.SelectedItems;
+            if (items.Count > 0)
+            {
+                int index = Int32.Parse(items[0].Text);
+                res = new Reservation(index);
+            }
+        }
     }
 }

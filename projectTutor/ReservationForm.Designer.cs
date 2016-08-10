@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.btnConfirmStuId = new System.Windows.Forms.Button();
             this.nStuId = new System.Windows.Forms.NumericUpDown();
             this.lblStuIdConfirmed = new System.Windows.Forms.Label();
             this.btnPrev = new System.Windows.Forms.Button();
@@ -97,6 +96,13 @@
             this.b5_2 = new System.Windows.Forms.Button();
             this.b5_1 = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.lvResList = new System.Windows.Forms.ListView();
+            this.colID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colStudent = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colTutor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colRoom = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nStuId)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,16 +114,6 @@
             this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Student Id";
-            // 
-            // btnConfirmStuId
-            // 
-            this.btnConfirmStuId.Location = new System.Drawing.Point(243, 15);
-            this.btnConfirmStuId.Name = "btnConfirmStuId";
-            this.btnConfirmStuId.Size = new System.Drawing.Size(75, 23);
-            this.btnConfirmStuId.TabIndex = 3;
-            this.btnConfirmStuId.Text = "Confirm";
-            this.btnConfirmStuId.UseVisualStyleBackColor = true;
-            this.btnConfirmStuId.Click += new System.EventHandler(this.btnConfirmStuId_Click);
             // 
             // nStuId
             // 
@@ -135,7 +131,7 @@
             // lblStuIdConfirmed
             // 
             this.lblStuIdConfirmed.AutoSize = true;
-            this.lblStuIdConfirmed.Location = new System.Drawing.Point(363, 20);
+            this.lblStuIdConfirmed.Location = new System.Drawing.Point(260, 25);
             this.lblStuIdConfirmed.Name = "lblStuIdConfirmed";
             this.lblStuIdConfirmed.Size = new System.Drawing.Size(10, 13);
             this.lblStuIdConfirmed.TabIndex = 5;
@@ -769,11 +765,62 @@
             this.b5_1.UseVisualStyleBackColor = true;
             this.b5_1.Click += new System.EventHandler(this.b5_1_Click);
             // 
+            // lvResList
+            // 
+            this.lvResList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colID,
+            this.colStudent,
+            this.colTutor,
+            this.colRoom,
+            this.colDate});
+            this.lvResList.FullRowSelect = true;
+            this.lvResList.GridLines = true;
+            this.lvResList.Location = new System.Drawing.Point(572, 84);
+            this.lvResList.Name = "lvResList";
+            this.lvResList.Size = new System.Drawing.Size(412, 279);
+            this.lvResList.TabIndex = 70;
+            this.lvResList.UseCompatibleStateImageBehavior = false;
+            this.lvResList.View = System.Windows.Forms.View.Details;
+            this.lvResList.SelectedIndexChanged += new System.EventHandler(this.lvResList_SelectedIndexChanged);
+            // 
+            // colID
+            // 
+            this.colID.Text = "Id";
+            // 
+            // colStudent
+            // 
+            this.colStudent.Text = "StudentId";
+            // 
+            // colTutor
+            // 
+            this.colTutor.Text = "TutorId";
+            // 
+            // colRoom
+            // 
+            this.colRoom.Text = "RoomId";
+            // 
+            // colDate
+            // 
+            this.colDate.Text = "Date";
+            this.colDate.Width = 150;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(909, 38);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 71;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // ReservationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(591, 400);
+            this.ClientSize = new System.Drawing.Size(996, 400);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.lvResList);
             this.Controls.Add(this.b5_10);
             this.Controls.Add(this.b5_9);
             this.Controls.Add(this.b5_8);
@@ -840,7 +887,6 @@
             this.Controls.Add(this.btnPrev);
             this.Controls.Add(this.lblStuIdConfirmed);
             this.Controls.Add(this.nStuId);
-            this.Controls.Add(this.btnConfirmStuId);
             this.Controls.Add(this.label1);
             this.Name = "ReservationForm";
             this.Text = "Registration";
@@ -852,7 +898,6 @@
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnConfirmStuId;
         private System.Windows.Forms.NumericUpDown nStuId;
         private System.Windows.Forms.Label lblStuIdConfirmed;
         private System.Windows.Forms.Button btnPrev;
@@ -920,6 +965,13 @@
         private System.Windows.Forms.Button b5_2;
         private System.Windows.Forms.Button b5_1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.ListView lvResList;
+        private System.Windows.Forms.ColumnHeader colID;
+        private System.Windows.Forms.ColumnHeader colStudent;
+        private System.Windows.Forms.ColumnHeader colTutor;
+        private System.Windows.Forms.ColumnHeader colRoom;
+        private System.Windows.Forms.ColumnHeader colDate;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
 
