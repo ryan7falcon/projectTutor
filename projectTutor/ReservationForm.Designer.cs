@@ -102,6 +102,7 @@
             this.colTutor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colRoom = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nStuId)).BeginInit();
             this.SuspendLayout();
             // 
@@ -780,6 +781,7 @@
             this.lvResList.TabIndex = 70;
             this.lvResList.UseCompatibleStateImageBehavior = false;
             this.lvResList.View = System.Windows.Forms.View.Details;
+            this.lvResList.SelectedIndexChanged += new System.EventHandler(this.lvResList_SelectedIndexChanged);
             // 
             // colID
             // 
@@ -802,11 +804,22 @@
             this.colDate.Text = "Date";
             this.colDate.Width = 150;
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(909, 38);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 71;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // ReservationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(996, 400);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.lvResList);
             this.Controls.Add(this.b5_10);
             this.Controls.Add(this.b5_9);
@@ -958,6 +971,7 @@
         private System.Windows.Forms.ColumnHeader colTutor;
         private System.Windows.Forms.ColumnHeader colRoom;
         private System.Windows.Forms.ColumnHeader colDate;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
 

@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.ListView;
 
 namespace projectTutor
 {
@@ -34,6 +35,8 @@ namespace projectTutor
             Button toExclude = buttons.Single(obj => obj.Name == "btnNext");
             buttons.Remove(toExclude);
             toExclude = buttons.Single(obj => obj.Name == "btnPrev");
+            buttons.Remove(toExclude);
+            toExclude = buttons.Single(obj => obj.Name == "btnDelete");
             buttons.Remove(toExclude);
 
             updateCalendar();
@@ -89,11 +92,6 @@ namespace projectTutor
         }
 
         //check if a student with given Id exists and display their name
-        private void btnConfirmStuId_Click(object sender, EventArgs e)
-        {           
-            checkStudent(Int32.Parse(nStuId.Text));            
-        }
-
         private void nStuId_ValueChanged(object sender, EventArgs e)
         {
             checkStudent((int)nStuId.Value);
@@ -111,7 +109,7 @@ namespace projectTutor
             }
             else
             {
-                lblStuIdConfirmed.Text = "Student " + nStuId.Text + " not found";
+                lblStuIdConfirmed.Text = "Student " + id + " not found";
             }
         }
 
@@ -566,6 +564,21 @@ namespace projectTutor
             processBtn(5, 10);
         }
 
-        
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            dbc.delete("Reservation", res.Id);
+            updateList();
+            updateCalendar();
+        }
+
+        private void lvResList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectedListViewItemCollection items = lvResList.SelectedItems;
+            if (items.Count > 0)
+            {
+                int index = Int32.Parse(items[0].Text);
+                res = new Reservation(index);
+            }
+        }
     }
 }
