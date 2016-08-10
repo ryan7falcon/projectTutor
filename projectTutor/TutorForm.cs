@@ -70,7 +70,7 @@ namespace projectTutor
         {
             string errorMsg;
             //regex only accepts alpha characters
-            string regex = "^[a-zA-Z_ ]*$";
+            string regex = "^.*[a-zA-Z_ ].*$";
             Match match = Regex.Match(TutorName.Text, regex, RegexOptions.IgnoreCase);
             // if the match is not a succes then set set error message
             if (!match.Success)
@@ -91,7 +91,7 @@ namespace projectTutor
         private void Subjects_Validating(object sender, CancelEventArgs e)
         {
             string errorMsg;
-            string regex = "^[a-zA-Z0-9_, ]*$";
+            string regex = "^[a-zA-Z0-9_, ].*$";
             Match match = Regex.Match(Subjects.Text, regex, RegexOptions.IgnoreCase);
             //check to see if the match is a succes if not sets error message
             if (!match.Success)
