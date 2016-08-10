@@ -28,6 +28,10 @@ namespace projectTutor
             InitializeComponent();
             dbc = new DBConnector();
 
+            //Load default values
+            int studentId = dbc.getLastId("Student") + 1;
+            studentIdBox.Text = studentId.ToString();
+
             //Testing load student to List
             getStudents();
         }
@@ -53,6 +57,10 @@ namespace projectTutor
                 //Pass the new updated student object to the database
                 dbc.update("Student", student);
                 MessageBox.Show("Updated student");
+            }
+            else if(studentIdBox.Text == "" || nameStudentFormMaskedBox.Text == "" || programStudentFormMaskedBox.Text == ""|| startDateFormMaskedBox.Text == "") 
+            {
+                MessageBox.Show("Please input every box");
             }
             else
             {
@@ -88,7 +96,7 @@ namespace projectTutor
             {
                 
                 //fillForm.studentId is extracted
-                dbc.delete("Student", studentId);
+                dbc.delete("Student", student.Id);
 
                 MessageBox.Show("Deleted student");
 
@@ -96,6 +104,8 @@ namespace projectTutor
                 getStudents();
                 refreshForm();
             }
+            getStudents();
+
         }
 
 
@@ -174,6 +184,17 @@ namespace projectTutor
 
         private void nameStudentFormMaskedBox_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
+        }
+
+        private void uniqueButton_Click(object sender, EventArgs e)
+        {
+            int studentId = dbc.getLastId("Student") + 1;
+            studentIdBox.Text = studentId.ToString();
+        }
+
+        private void studentIdBox_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
         }
     }
 }

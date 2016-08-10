@@ -39,6 +39,7 @@
             this.studentListView = new System.Windows.Forms.ListView();
             this.studentIdBox = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.uniqueButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // nameStudentFormLabel
@@ -140,6 +141,7 @@
             this.studentIdBox.Name = "studentIdBox";
             this.studentIdBox.Size = new System.Drawing.Size(132, 22);
             this.studentIdBox.TabIndex = 11;
+            this.studentIdBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.studentIdBox_MaskInputRejected);
             // 
             // label1
             // 
@@ -151,11 +153,23 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Student Id";
             // 
+            // uniqueButton
+            // 
+            this.uniqueButton.Location = new System.Drawing.Point(175, 116);
+            this.uniqueButton.Margin = new System.Windows.Forms.Padding(4);
+            this.uniqueButton.Name = "uniqueButton";
+            this.uniqueButton.Size = new System.Drawing.Size(128, 25);
+            this.uniqueButton.TabIndex = 15;
+            this.uniqueButton.Text = "Set Unique Id";
+            this.uniqueButton.UseVisualStyleBackColor = true;
+            this.uniqueButton.Click += new System.EventHandler(this.uniqueButton_Click);
+            // 
             // StudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(915, 575);
+            this.Controls.Add(this.uniqueButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.studentIdBox);
             this.Controls.Add(this.studentListView);
@@ -188,5 +202,6 @@
         private System.Windows.Forms.ListView studentListView;
         private System.Windows.Forms.MaskedTextBox studentIdBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button uniqueButton;
     }
 }

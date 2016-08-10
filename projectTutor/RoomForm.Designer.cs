@@ -113,6 +113,7 @@
             this.dateTimePicker.ShowUpDown = true;
             this.dateTimePicker.Size = new System.Drawing.Size(200, 22);
             this.dateTimePicker.TabIndex = 12;
+            this.dateTimePicker.ValueChanged += new System.EventHandler(this.dateTimePicker_ValueChanged);
             // 
             // roomBox
             // 
@@ -124,7 +125,7 @@
             // 
             // uniqueButton
             // 
-            this.uniqueButton.Location = new System.Drawing.Point(213, 66);
+            this.uniqueButton.Location = new System.Drawing.Point(213, 68);
             this.uniqueButton.Margin = new System.Windows.Forms.Padding(4);
             this.uniqueButton.Name = "uniqueButton";
             this.uniqueButton.Size = new System.Drawing.Size(137, 25);
@@ -137,12 +138,6 @@
             // 
             this.dayBox.FormattingEnabled = true;
             this.dayBox.ItemHeight = 16;
-            this.dayBox.Items.AddRange(new object[] {
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday"});
             this.dayBox.Location = new System.Drawing.Point(40, 218);
             this.dayBox.Name = "dayBox";
             this.dayBox.Size = new System.Drawing.Size(164, 84);

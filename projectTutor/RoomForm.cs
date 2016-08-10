@@ -18,6 +18,7 @@ namespace projectTutor
         Room room;
         int roomId;
 
+
         String[] days = {
                 "Monday",
                 "Tuesday",
@@ -33,6 +34,7 @@ namespace projectTutor
 
             dbc = new DBConnector();
             loadInputs();
+            loadDefault();
             getRooms();
         }
 
@@ -85,6 +87,7 @@ namespace projectTutor
             //Update rooms list
             getRooms();
             refreshForm();
+            loadDefault();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -106,6 +109,7 @@ namespace projectTutor
                 //Update students list
                 getRooms();
                 refreshForm();
+                loadDefault();
             }
         }
 
@@ -229,12 +233,25 @@ namespace projectTutor
             idBox.Text = roomId.ToString();
         }
 
+        private void loadDefault() {
+            //Load default values
+            int roomId = dbc.getLastId("Room") + 1;
+            idBox.Text = roomId.ToString();
+            roomBox.Text = "C15A";
+            dayBox.SelectedIndex = 0;
+            dateTimePicker.Value = DateTime.Parse("9:00 AM");
+        }
+
         private void dayBox_SelectedIndexChanged_1(object sender, EventArgs e)
         {
 
         }
 
         private void idBox_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+        }
+
+        private void dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
 
         }
