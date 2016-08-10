@@ -116,9 +116,11 @@
             // 
             this.startDateFormMaskedBox.Location = new System.Drawing.Point(37, 326);
             this.startDateFormMaskedBox.Margin = new System.Windows.Forms.Padding(4);
+            this.startDateFormMaskedBox.Mask = "00000";
             this.startDateFormMaskedBox.Name = "startDateFormMaskedBox";
             this.startDateFormMaskedBox.Size = new System.Drawing.Size(132, 22);
             this.startDateFormMaskedBox.TabIndex = 10;
+            this.startDateFormMaskedBox.ValidatingType = typeof(int);
             // 
             // studentListView
             // 
@@ -138,9 +140,11 @@
             this.studentIdBox.BeepOnError = true;
             this.studentIdBox.Location = new System.Drawing.Point(37, 116);
             this.studentIdBox.Margin = new System.Windows.Forms.Padding(4);
+            this.studentIdBox.Mask = "00000";
             this.studentIdBox.Name = "studentIdBox";
             this.studentIdBox.Size = new System.Drawing.Size(132, 22);
             this.studentIdBox.TabIndex = 11;
+            this.studentIdBox.ValidatingType = typeof(int);
             this.studentIdBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.studentIdBox_MaskInputRejected);
             // 
             // label1

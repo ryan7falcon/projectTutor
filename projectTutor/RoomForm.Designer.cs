@@ -147,9 +147,11 @@
             // idBox
             // 
             this.idBox.Location = new System.Drawing.Point(41, 69);
+            this.idBox.Mask = "00000";
             this.idBox.Name = "idBox";
             this.idBox.Size = new System.Drawing.Size(165, 22);
             this.idBox.TabIndex = 16;
+            this.idBox.ValidatingType = typeof(int);
             this.idBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.idBox_MaskInputRejected);
             // 
             // label4
