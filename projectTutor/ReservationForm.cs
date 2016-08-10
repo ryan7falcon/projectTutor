@@ -6,8 +6,10 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.ListView;
 
 namespace projectTutor
 {
@@ -20,13 +22,49 @@ namespace projectTutor
         int week = 0;
         DateTime today = DateTime.Now;
         Student stu;
+        List<Button> buttons;
 
         public ReservationForm()
         {
             InitializeComponent();
             dbc = new DBConnector();
             lblToday.Text = today.ToShortDateString() + ", " + today.DayOfWeek;
-            PopulateDates();
+
+            //populate buttons list
+            buttons = this.Controls.OfType<Button>().ToList();
+            Button toExclude = buttons.Single(obj => obj.Name == "btnNext");
+            buttons.Remove(toExclude);
+            toExclude = buttons.Single(obj => obj.Name == "btnPrev");
+            buttons.Remove(toExclude);
+            toExclude = buttons.Single(obj => obj.Name == "btnDelete");
+            buttons.Remove(toExclude);
+
+            updateCalendar();
+
+            updateList();
+
+        }
+
+        private void updateList()
+        {
+            lvResList.Items.Clear();
+
+            List<Reservation> resList = Reservation.getAll();
+            //get all the customers from the database
+            List<List<string>> listOfLists = dbc.getList("Reservation");
+            foreach (List<string> list in listOfLists)
+            {
+                //fill in one row in the listView
+                Reservation res = new Reservation(Int32.Parse(list[0]), Int32.Parse(list[1]), DateTime.Parse(list[2]), Int32.Parse(list[3]), Int32.Parse(list[4]));
+                ListViewItem item = new ListViewItem(new[] { res.Id.ToString(), res.StudentId.ToString(), res.TutorId.ToString(), res.RoomId.ToString(), res.TimeSlot.ToString() });
+                lvResList.Items.Add(item);
+            }
+
+        }
+
+        private class TwoLists{
+            public List<Tutor> tuts { set; get; }
+            public List<Room> rooms { set; get; }
         }
 
         //print dates below each day of the week
@@ -42,7 +80,7 @@ namespace projectTutor
         //get a date given the week and day of the week
         private DateTime getDate(int week, int day)
         {
-           return today.AddDays(day- (int)today.DayOfWeek + 7*week);
+           return today.AddDays(day - (int)today.DayOfWeek + 7*week);
         }
      
 
@@ -54,24 +92,24 @@ namespace projectTutor
         }
 
         //check if a student with given Id exists and display their name
-        private void btnConfirmStuId_Click(object sender, EventArgs e)
-        {           
-            checkStudent();            
+        private void nStuId_ValueChanged(object sender, EventArgs e)
+        {
+            checkStudent((int)nStuId.Value);
         }
 
         //check if student with the given id exists and reflect it in text of the label lblStuIdConfirmed
-        private void checkStudent()
+        private void checkStudent(int id)
         {
-            bool stuExist = dbc.checkIfExist("Student", Int32.Parse(nStuId.Text));
+            bool stuExist = dbc.checkIfExist("Student",id);
 
             if (stuExist)
             {               
-                stu = getStudentFromDB(Int32.Parse(nStuId.Text));
+                stu = getStudentFromDB(id);
                 lblStuIdConfirmed.Text = stu.Name;
             }
             else
             {
-                lblStuIdConfirmed.Text = "Student " + nStuId.Text + " not found";
+                lblStuIdConfirmed.Text = "Student " + id + " not found";
             }
         }
 
@@ -82,14 +120,29 @@ namespace projectTutor
             return new Student(Int32.Parse(l[0]), l[1], l[2], Int32.Parse(l[3]));
         }
 
-        //on time slot button click open a make registration form with the picked time, day and student
-        //this form will allow to pick a tutor and a room and finish the reservation 
-        private void processBtn(int day, int timeSlot)
+        //returns true if there is a room and a tutor available for this date and time (date is calculated using the day and the week)
+        private bool checkButton(int day, int timeSlot)
         {
+            TwoLists arr = getTutorsAndRooms(day, timeSlot);
+            if (arr.tuts == null || arr.rooms == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        //returns a class that contains a list of tutors and a list of rooms available for this date and time (date is calculated using the day and the week)
+        private TwoLists getTutorsAndRooms(int day, int timeSlot)
+        {
+            TwoLists arr = new TwoLists();
+
             //get the date and time
             DateTime date = getDate(week, day);
             //get the student
-            checkStudent();
+            checkStudent((int)nStuId.Value);
             if (stu == null)
             {
                 MessageBox.Show("Choose a valid student Id first");
@@ -106,7 +159,6 @@ namespace projectTutor
                 List<Tutor> tuts = new List<Tutor>();
                 List<Room> rooms = new List<Room>();
 
-                //TODO: change getList to something that gets relevant info for the chosen date and time
                 string[] dayTime = new string[] { ((int)date.DayOfWeek).ToString(), Reservation.GetStartTime(timeSlot) };
                 string[] dateArr = new string[] { date.ToShortDateString() + " " + Reservation.GetStartTime(timeSlot) };
                 //check availability table for the date and time
@@ -114,46 +166,89 @@ namespace projectTutor
 
                 if (avs.Count == 0)
                 {
-                    MessageBox.Show("No available tutors for " + date.DayOfWeek + " " + dayTime[1]);
-                    //return;
+                    //MessageBox.Show("No available tutors for " + date.DayOfWeek + " " + dayTime[1]);
+                    return arr;
                 }
                 //check room table for the date and time
                 List<Room> rms = Room.getForDayAndTime(dayTime);
 
                 if (rms.Count == 0)
                 {
-                    MessageBox.Show("No available rooms for " + date.DayOfWeek + " " + dayTime[1]);
-                    //return;
+                    //MessageBox.Show("No available rooms for " + date.DayOfWeek + " " + dayTime[1]);
+                    return arr;
                 }
 
                 //check reservation table for the date, time, tutor and room
+                //discard availability records and room records according to reservations
                 List<Reservation> ress = Reservation.getForDayAndTime(dateArr);
-                if (ress.Count == 0)
+
+                if (ress.Count != 0)
                 {
-                    MessageBox.Show("No reservations made for " + dateArr[0]);
+                    foreach (Reservation res in ress)
+                    {
+                        //remove tutor
+                        Availability av = avs.Single(obj => obj.TutorId == res.TutorId);
+                        avs.Remove(av);
+
+                        //remove room
+                        Room rm = rms.Single(obj => obj.Id == res.RoomId);
+                        rms.Remove(rm);
+                    }
+                }
+
+                //if there are noo tutors or rooms available, return
+                if (avs.Count == 0 || rms.Count == 0)
+                {
+                    return arr;
                 }
                 else
                 {
-                    MessageBox.Show(ress[0].ToString());
+                    //get tutors from availability list
+                    foreach (Availability av in avs)
+                    {
+                        Tutor t = new Tutor(av.TutorId);
+                        t.loadRecord();
+                        tuts.Add(t);
+                    }
+
+                    arr.tuts = tuts;
+                    arr.rooms = rms;
+                    return arr;
                 }
-
-
-                //discard availability records and room records according to reservations
-
-                //if there is something left, proceed
-
-                //get all tutors
-                tuts = Tutor.getAll();
-
-                //get all rooms
-                rooms = Room.getAll();
-
-                makeRegForm = new MakeReservationForm(date, timeSlot, stu, tuts, rooms);
-                makeRegForm.FormClosed += MakeRegForm_FormClosed;
-                makeRegForm.Show();
-                
-               
             }
+                return arr;
+
+        }
+
+        //on time slot button click open a make registration form with the picked time, day and student
+        //this form will allow to pick a tutor and a room and finish the reservation 
+        private void processBtn(int day, int timeSlot)
+        {
+            bool stuExist = dbc.checkIfExist("Student", Int32.Parse(nStuId.Text));
+
+            if (!stuExist)
+            {
+                MessageBox.Show("Choose a valid student id first");
+                return;
+            }
+                //TODO: prevent from processing if student is not valid
+                //TODO: show all reservations
+                //get rooms and tutors
+                TwoLists arr = getTutorsAndRooms(day, timeSlot);
+            //get the date and time
+            DateTime date = getDate(week, day);
+
+            makeRegForm = new MakeReservationForm(date, timeSlot, stu, arr.tuts, arr.rooms);
+            makeRegForm.FormClosed += MakeRegForm_FormClosed;
+            makeRegForm.ReservationMade += makeRegForm_ReservationMade;
+            makeRegForm.Show();
+                                        
+        }
+
+        private void makeRegForm_ReservationMade(object sender, EventArgs e)
+        {
+            updateCalendar();
+            updateList();
         }
 
         private void MakeRegForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -161,17 +256,39 @@ namespace projectTutor
             makeRegForm = null;
         }
 
-       
-
         //enable and disable buttons depending on availability
         private void enableButtons()
-        {
-           //TODO: enable all buttons
+        {        
+            foreach(Button b in buttons)
+            {
+                b.Enabled = true;
+            }
         }
 
         private void disableButtons()
         {
             //TODO: disable buttons that have no matching tutor and room available for their time
+            foreach (Button b in buttons)
+            {
+                //get the day and the timeslot that this button belongs to using its name 
+                //(b1_1 would be Monday 9am, b2_1 - tuesday 9am, b3_2 - Wednsday 10 am)
+                string name = b.Name;
+                string pattern = @"b(\d+)_(\d+)";
+                int day = -1;
+                int timeSlot = -1;
+                foreach (Match m in Regex.Matches(name, pattern))
+                {
+                    day = Int32.Parse(m.Groups[1].Value);
+                    timeSlot = Int32.Parse(m.Groups[2].Value);
+                }
+                if ( day!=-1 && timeSlot!= -1){
+                    //check if this time and day has available tutors and rooms and if not, disable the button
+                    if( !checkButton(day, timeSlot))
+                    {
+                        b.Enabled = false;
+                    }                       
+                }               
+            }
         }
 
         //update dates and buttons to reflect another week
@@ -445,6 +562,23 @@ namespace projectTutor
         private void b5_10_Click(object sender, EventArgs e)
         {
             processBtn(5, 10);
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            dbc.delete("Reservation", res.Id);
+            updateList();
+            updateCalendar();
+        }
+
+        private void lvResList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectedListViewItemCollection items = lvResList.SelectedItems;
+            if (items.Count > 0)
+            {
+                int index = Int32.Parse(items[0].Text);
+                res = new Reservation(index);
+            }
         }
     }
 }
