@@ -43,7 +43,13 @@ namespace projectTutor
         private void saveStudenFormButton_Click(object sender, EventArgs e)
         {
 
-            if (dbc.checkIfExist("Student", Int32.Parse(studentIdBox.Text)))
+            if (studentIdBox.Text == "" || nameStudentFormMaskedBox.Text == "" || programStudentFormMaskedBox.Text == "" || startDateFormMaskedBox.Text == "")
+            {
+                MessageBox.Show("Please input every box");
+
+                
+            }
+            else if (dbc.checkIfExist("Student", Int32.Parse(studentIdBox.Text)))
             {
                 //Get all the inputs from user
                 int studentId = Int32.Parse(studentIdBox.Text);
@@ -57,10 +63,6 @@ namespace projectTutor
                 //Pass the new updated student object to the database
                 dbc.update("Student", student);
                 MessageBox.Show("Updated student");
-            }
-            else if(studentIdBox.Text == "" || nameStudentFormMaskedBox.Text == "" || programStudentFormMaskedBox.Text == ""|| startDateFormMaskedBox.Text == "") 
-            {
-                MessageBox.Show("Please input every box");
             }
             else
             {

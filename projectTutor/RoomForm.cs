@@ -52,7 +52,13 @@ namespace projectTutor
 
         private void savedButton_Click(object sender, EventArgs e)
         {
-            if (dbc.checkIfExist("Room", roomId))
+
+            if (idBox.Text == "" || roomBox.Text == "" || dayBox.Text == "" )
+            {
+                MessageBox.Show("No empty boxes please");
+
+            }
+            else if (dbc.checkIfExist("Room", roomId))
             {
                 //Get the selected item
                 //Pass it to rooms object
