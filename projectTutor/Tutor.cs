@@ -52,13 +52,13 @@ namespace projectTutor
                 case 0:
                     return "Beginner";
                 case 1:
-                    return "Intermediate";
+                    return "Beginner";
                 case 2:
-                    return "Advanced";
+                    return "Intermediate";
                 case 3:
-                    return "Master";
+                    return "Advanced";
                 case 4:
-                    return "God";
+                    return "Master";
                 default:
                     return "Unknown";
             }

@@ -187,6 +187,7 @@ namespace projectTutor
                     foreach (Reservation res in ress)
                     {
                         //remove tutor
+
                         Availability av = avs.Single(obj => obj.TutorId == res.TutorId);
                         avs.Remove(av);
 
